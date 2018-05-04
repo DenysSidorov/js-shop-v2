@@ -35,6 +35,7 @@
     "babel-preset-stage-2": "~6.24.1",
     "body-parser": "~1.15.2",
     "cors": "~2.8.4",
+    "ejs": "^2.5.9",
     "eslint": "~4.3.0",
     "eslint-config-airbnb": "~15.1.0",
     "eslint-config-airbnb-base": "~11.3.1",
@@ -63,10 +64,8 @@
     "start4": "webpack-dev-server --hot --inline",
     "watch": "webpack --watch",
     "push": "git push all master",
-
     "lint": "node_modules\\.bin\\eslint 1.js",
     "start-server": "set NODE_ENV=development&&set PORT=5005&&nodemon --exec babel-node server.js",
-
     "start33": "babel-node server.js --presets es2015",
     "start2": "node s.js",
     "start-temp": "babel-node server.js --presets es2015, stage-2",
