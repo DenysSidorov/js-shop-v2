@@ -13,9 +13,9 @@ app.use(bodyParse.json());
 app.set('view engine', 'ejs');
 app.set('views','./app-server/views');
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+// app.get('/', function (req, res) {
+//   res.send('Hello World!');
+// });
 
 app.get('/', function(req, res) {
   res.render('pages/index');
