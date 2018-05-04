@@ -65,7 +65,7 @@
     "push": "git push all master",
 
     "lint": "node_modules\\.bin\\eslint 1.js",
-    "start-server": "set NODE_ENV=development&&set PORT=3000&&nodemon --exec babel-node server.js",
+    "start-server": "set NODE_ENV=development&&set PORT=5005&&nodemon --exec babel-node server.js",
 
     "start33": "babel-node server.js --presets es2015",
     "start2": "node s.js",
