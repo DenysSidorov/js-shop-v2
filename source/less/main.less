@@ -1,7 +1,7 @@
-@import  "./font-awesome";
+@import "./font-awesome";
 /*@import "./less-modules/confirmBlock"; */ /* Уведомление для пользоватедля */
-/* @import "less-modules/TempmainBodyCard";  Карточки на главной странице */
-/* @import "./less-modules/mainContainerForCard"; */  /* Контейнер для карточки товара*/
+// @import "less-modules/TempmainBodyCard"; // Карточки на главной странице */
+/* @import "./less-modules/mainContainerForCard"; */ /* Контейнер для карточки товара*/
 //@import "./less-modules/tabsInCard"; /* Вкладки в карточки товара*/
 /* @import "less-modules/similarGoodsNew"; */ /* Вкладки в карточки товара*/
 /* @import "./less-modules/slick-slider"; */ /* Вкладки в карточки товара*/
@@ -20,7 +20,6 @@
 @mainRedColor: #ff301e;
 @lightBlue: #93b7c9;
 @cardBG: #f6f6f6;
-
 
 @keyframes preloader {
   to {
@@ -253,16 +252,16 @@ html {
   }
 }
 
-
-
-.mainContainerSection{
+.mainContainerSection {
   padding-top: 25px;
 }
+
 @media screen and (max-width: 760px) {
-  .mainContainerSection{
+  .mainContainerSection {
     padding: 25px 10px 5px 10px;
   }
 }
+
 /*
 .menuInfoSection {
   // margin-top: 55px;
@@ -390,7 +389,7 @@ html {
     padding: 0 10px;
 
   }
-  .productsCardBlock__searchCard-count{
+  .productsCardBlock__searchCard-count {
     margin-left: 10px;
     margin-bottom: 10px;
     font-size: 2rem;
@@ -427,6 +426,7 @@ html {
 .content {
   flex: 1 0 auto;
 }
+
 /*
 .additionalCardBlock {
   height: 100px;
@@ -455,7 +455,7 @@ html {
           padding-top: 0px;
         }
         span {
-           //transform: scale(1.1);
+          //transform: scale(1.1);
         }
         .strip_double {
           flex-grow: 1;
@@ -1134,10 +1134,11 @@ html {
     }
   }
 }
+
 @media screen and  (max-width: 600px) {
-  .formOrderMain{
-    .itemsInCart{
-      .allPriceForItems{
+  .formOrderMain {
+    .itemsInCart {
+      .allPriceForItems {
         background-color: transparent;
         color: black;
         span {
@@ -1186,7 +1187,7 @@ html {
   display: none; /* спрятать блок */
   cursor: pointer;
   transition: all 0.5s ease;
-  i{
+  i {
     font-size: 45px;
     opacity: 0.3;
   }

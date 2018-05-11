@@ -8,7 +8,7 @@ let app = express();
 app.disable('x-powered-by'); // Отключить определение, что это express
 /** Запуск приожения на порте*/
 console.log(process.env.PORT, 'port');
-app.use(express.static(path.join(__dirname, '/www/')));
+app.use(express.static(path.join(__dirname, '/build/')));
 app.use(bodyParse.json());
 app.set('view engine', 'ejs');
 app.set('views','./app-server/views');
