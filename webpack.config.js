@@ -31,6 +31,7 @@ const common = merge([
       path: path.resolve(__dirname, './build'),
       filename: 'js/[name].js'
     },
+    devtool: "source-map",
     plugins: [
       // new CleanWebpackPlugin([
       //   './build/**/*.*',
@@ -74,11 +75,23 @@ const common = merge([
       //   $: 'jquery',
       //   jQuery: 'jquery'
       // })
-    ]
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.(svg|ttf|eot|woff|woff2)$/,
+          loader: 'file-loader',
+          options: {
+            name: '/fonts/[name].[ext]'
+          },
+        },
+      ]
+    }
+
   },
   // pug(),
   images(),
-  fonts()
+  // fonts()
 ]);
 
 module.exports = function (env) {
@@ -92,8 +105,15 @@ module.exports = function (env) {
   if (env === 'development') {
     return merge([
       common,
-      devserver(),
-      extractCSS(),
+      // devserver(),
+      {
+        devServer: {
+          stats: 'errors-only',
+          port: 9000,
+          contentBase: path.join(__dirname, 'build/'),
+        }
+      },
+      extractCSS()
       // sass(),
       // css()
     ])

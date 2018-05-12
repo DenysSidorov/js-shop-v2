@@ -6,7 +6,7 @@ module.exports = function() {
           test: /\.(svg|ttf|eot|woff|woff2)$/,
           loader: 'file-loader',
           options: {
-            name: 'fonts/[name].[ext]'
+            name: '/fonts/[name].[ext]'
           },
         },
       ],
