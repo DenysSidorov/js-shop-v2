@@ -11,18 +11,20 @@ console.log(process.env.PORT, 'port');
 app.use(express.static(path.join(__dirname, '/build/')));
 app.use(bodyParse.json());
 app.set('view engine', 'ejs');
-app.set('views','./app-server/views');
+app.set('views','./source/pages');
 
 // app.get('/', function (req, res) {
 //   res.send('Hello World!');
 // });
 
 app.get('/', function(req, res) {
-  res.render('pages/index');
+  res.render('index/index');
 });
 
-app.get('/about', function(req, res) {
-  res.render('pages/about');
+app.get('/test', function(req, res) {
+  let data  = {name: 'den'}
+  let wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('test/test', wrapper);
 });
 
 

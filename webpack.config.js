@@ -58,6 +58,7 @@ const common = merge([
         filename: 'test.html',
         chunks: ['test', 'common', 'common_css'],
         // template: 'ejs-render-loader!./source/pages/test/test.ejs',
+        data: {name: 'den'},
         template: './pages/test/test.ejs',
         inject: 'body'
       }),
