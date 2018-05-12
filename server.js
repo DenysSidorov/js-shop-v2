@@ -29,6 +29,6 @@ app.get('/test', function(req, res) {
 
 
 app.listen(config.backend.port, (er) => {
-  console.log(er);
+  er && console.log(er);
   console.log(`Example app listening on port ${config.backend.port}`);
 });

@@ -21,8 +21,8 @@ const common = merge([
   {
     context: path.resolve(__dirname, './source'),
     entry: {
-      // common_css: ['./less/main', './less/reset', './less/font-awesome'],
-      'common_css': './less/reset.less',
+      'common_css': ['./less/main.less', './less/reset.less', './less/font-awesome.less'],
+      // 'common_css': './less/reset.less',
       'index': './pages/index/index.js',
       'blog': './pages/blog/blog.js',
       'test': './pages/test/test.js'
@@ -41,7 +41,7 @@ const common = merge([
       new HtmlWebpackPlugin({
         filename: 'index.html',
         chunks: ['index', 'common', 'common_css'],
-        template: './pages/index/index.pug'
+        template: './pages/index/index.ejs'
       }),
       // new HtmlWebpackPlugin({
       //   filename: 'test.html',
@@ -76,7 +76,7 @@ const common = merge([
       // })
     ]
   },
-  pug(),
+  // pug(),
   images(),
   fonts()
 ]);

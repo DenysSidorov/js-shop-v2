@@ -1,10 +1,10 @@
-import './index.scss';
-import './jop.less';
+// import './index.scss';
+// import './jop.less';
 // import 'normalize.css';
 
-import createMenu from '../../components/menu/menu';
-var menu = createMenu(['Главная!/*','Блог'], 'menu');
-document.body.appendChild(menu);
+// import createMenu from '../../components/menu/menu';
+// var menu = createMenu(['Главная!/*','Блог'], 'menu');
+// document.body.appendChild(menu);
 
 console.log('in index.js');
 // console.log($);
