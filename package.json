@@ -10,7 +10,7 @@
     "serv": "static build",
 
     "start-watch": "webpack -w --env development",
-    "start-server": "set NODE_ENV=development&&set PORT=5005&&nodemon --exec babel-node server.js"
+    "start-server": "set NODE_ENV=development&&set PORT=5006&&nodemon --exec babel-node server.js"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
