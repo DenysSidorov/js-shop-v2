@@ -1,3 +1,4 @@
+// import slick from '../../components/slick/slick'
 // import './index.scss';
 // import './jop.less';
 // import 'normalize.css';
