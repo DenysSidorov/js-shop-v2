@@ -25,6 +25,10 @@ app.get('/', function(req, res) {
   res.render('index/index');
 });
 
+app.get('/order', function(req, res) {
+  res.render('order/order');
+});
+
 app.get('/test', function(req, res) {
   let data  = {name: 'den'}
   let wrapper = {htmlWebpackPlugin: {options: {data: data}}};

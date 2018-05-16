@@ -25,7 +25,8 @@ const common = merge([
       // 'common_css': './less/reset.less',
       'index': './pages/index/index.js',
       'blog': './pages/blog/blog.js',
-      'test': './pages/test/test.js'
+      'test': './pages/test/test.js',
+      'order': './pages/order/order.js'
     },
     output: {
       path: path.resolve(__dirname, './build'),
@@ -58,6 +59,12 @@ const common = merge([
         filename: 'index.html',
         chunks: ['index', 'common', 'common_css'],
         template: 'ejs-render-loader!./source/pages/index/index.ejs',
+        inject: 'body'
+      }),
+      new HtmlWebpackPlugin({
+        filename: 'order.html',
+        chunks: ['order', 'common', 'common_css'],
+        template: 'ejs-render-loader!./source/pages/order/order.ejs',
         inject: 'body'
       }),
       // new HtmlWebpackPlugin({
