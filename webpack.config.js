@@ -32,6 +32,21 @@ const common = merge([
       filename: 'js/[name].js'
     },
     devtool: "source-map",
+    module: {
+      rules: [
+        {
+          test: /\.html$/,
+          loader: 'html-loader'
+        },
+        {
+          test: /\.(svg|ttf|eot|woff|woff2)$/,
+          loader: 'file-loader',
+          options: {
+            name: '/fonts/[name].[ext]'
+          },
+        },
+      ]
+    },
     plugins: [
       // new CleanWebpackPlugin([
       //   './build/**/*.*',
@@ -42,7 +57,8 @@ const common = merge([
       new HtmlWebpackPlugin({
         filename: 'index.html',
         chunks: ['index', 'common', 'common_css'],
-        template: './pages/index/index.ejs'
+        template: 'ejs-render-loader!./source/pages/index/index.ejs',
+        inject: 'body'
       }),
       // new HtmlWebpackPlugin({
       //   filename: 'test.html',
@@ -75,18 +91,8 @@ const common = merge([
       //   $: 'jquery',
       //   jQuery: 'jquery'
       // })
-    ],
-    module: {
-      rules: [
-        {
-          test: /\.(svg|ttf|eot|woff|woff2)$/,
-          loader: 'file-loader',
-          options: {
-            name: '/fonts/[name].[ext]'
-          },
-        },
-      ]
-    }
+    ]
+
 
   },
   // pug(),

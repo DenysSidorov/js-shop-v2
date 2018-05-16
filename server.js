@@ -10,8 +10,12 @@ app.disable('x-powered-by'); // Отключить определение, чт�
 console.log(process.env.PORT, 'port');
 app.use(express.static(path.join(__dirname, '/build/')));
 app.use(bodyParse.json());
+// app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, './source/pages'));
+
+app.engine('ejs', require('ejs-locals'));
+app.set('views', __dirname + './source/pages');
 app.set('view engine', 'ejs');
-app.set('views','./source/pages');
 
 // app.get('/', function (req, res) {
 //   res.send('Hello World!');
