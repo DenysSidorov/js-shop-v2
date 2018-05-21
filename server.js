@@ -20,13 +20,15 @@ app.set('view engine', 'ejs');
 // app.get('/', function (req, res) {
 //   res.send('Hello World!');
 // });
+//
+// app.get('/', function(req, res) {
+//   res.render('index/index');
+// });
 
-app.get('/', function(req, res) {
-  res.render('index/index');
-});
-
-app.get('/index', function(req, res) {
-  res.render('index/index');
+app.get(['/d','/index',  ''], function(req, res) {
+  let data  = {title: 'index'}
+  let wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('index/index', wrapper);
 });
 
 app.get('/order', function(req, res) {
