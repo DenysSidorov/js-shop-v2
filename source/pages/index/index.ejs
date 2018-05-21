@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <title>Index</title>
+    <title><%= htmlWebpackPlugin.options.data.title %></title>
 
 
     <!--static-->
@@ -23,6 +23,7 @@
 <div class="wrapper">
     <div class="content">
 <h1> <%= htmlWebpackPlugin.options.data.title %></h1>
+<h1> <%= htmlWebpackPlugin.options.data.js %></h1>
         <!--CONFIRM BLOCK НЕЗАВИСИМЫЙ TOP-->
         <!--<div class="confirmBlockForUser">-->
         <!--<div class="confirmBlockForUser__content">-->
@@ -745,7 +746,7 @@
     <!--<script type="text/javascript" src="js/index.js"></script>-->
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/common_css.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.options.data.js %>"></script>
 </div>
 </body>
 </html>

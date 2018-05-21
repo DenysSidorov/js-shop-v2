@@ -8,7 +8,7 @@ let app = express();
 app.disable('x-powered-by'); // Отключить определение, что это express
 /** Запуск приожения на порте*/
 console.log(process.env.PORT, 'port');
-app.use(express.static(path.join(__dirname, '/build/')));
+
 app.use(bodyParse.json());
 // app.set('view engine', 'ejs');
 // app.set('views', path.join(__dirname, './source/pages'));
@@ -25,8 +25,8 @@ app.set('view engine', 'ejs');
 //   res.render('index/index');
 // });
 
-app.get(['/d','/index',  ''], function(req, res) {
-  let data  = {title: 'index'}
+app.get(['/d','/index',  '/',''], function(req, res) {
+  let data  = {title: 'index', js: 'js/index.js'}
   let wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('index/index', wrapper);
 });
@@ -41,7 +41,7 @@ app.get('/test', function(req, res) {
   res.render('test/test', wrapper);
 });
 
-
+app.use(express.static(path.join(__dirname, '/build/')));
 app.listen(config.backend.port, (er) => {
   er && console.log(er);
   console.log(`Example app listening on port ${config.backend.port}`);
