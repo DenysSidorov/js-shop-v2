@@ -1,5 +1,5 @@
 // import slick from '../../components/slick/slick'
-// import './index.scss';
+import './order.scss';
 // import './jop.less';
 // import 'normalize.css';
 
@@ -7,6 +7,6 @@
 // var menu = createMenu(['Главная!/*','Блог'], 'menu');
 // document.body.appendChild(menu);
 
-console.log('in order.js');
+console.log('in order2.js');
 // console.log($);
 // console.log(jQuery);
