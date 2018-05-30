@@ -57,7 +57,15 @@ app.get('/cashback-and-exchange', function(req, res) {
   res.render('landings/cashback-and-exchange/cashback-and-exchange', wrapper);
 });
 
+app.get('/about-us', function(req, res) {
+  const data  = {title: 'О нас', js: 'about-us', css: 'about-us'};
+  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('landings/about-us/about-us', wrapper);
+});
+
+
 app.use(express.static(path.join(__dirname, '/build/')));
+
 app.listen(config.backend.port, (er) => {
   er && console.log(er);
   console.log(`Example app listening on port ${config.backend.port}`);

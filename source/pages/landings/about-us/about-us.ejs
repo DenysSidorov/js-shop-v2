@@ -6,6 +6,7 @@
 
     <title><%= htmlWebpackPlugin.options.data.title %></title>
     <link href="./css/common_css.css" rel="stylesheet">
+    <link href="./css/<%= htmlWebpackPlugin.options.data.css %>.css" rel="stylesheet">
 </head>
 <body>
 <div class="wrapper">
@@ -735,6 +736,7 @@
 
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/common_css.js"></script>
+<script type="text/javascript" src="js/<%= htmlWebpackPlugin.options.data.js %>.js"></script>
 
 </body>
 </html>

@@ -1,1 +1,1 @@
-import './cashback-and-exchange.scss';
+import './about-us.scss';
