@@ -3,21 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <title>Title</title>
 
-    <!--static-->
-    <!--<link rel="stylesheet" href="css/reset.css">-->
-    <!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
-
-    <!--static-end-->
-
-    <!--webpack-->
-    <!--<link rel="stylesheet" type="text/html" href="assets/common_css.b.css"/>-->
-    <!--<link rel="stylesheet" type="text/html" href="assets/app.b.css"/>-->
-
+    <title><%= htmlWebpackPlugin.options.data.title %></title>
     <link href="./css/common_css.css" rel="stylesheet">
-    <link type="text/css" href="./css/order.css" rel="stylesheet">
-    <!--webpack-end-->
+    <link href="./css/<%= htmlWebpackPlugin.options.data.css %>.css" rel="stylesheet">
 </head>
 <body>
 <div class="wrapper">
@@ -29,38 +18,7 @@
         <div class="mainContainerSection fullWidth left">
             <div class="container">
                 <!--CONTENT TOP-->
-                <div class="menuInfoSection left fullWidth ">
-                    <div class="container">
-                        <div class="submenuBlock">
-                            <div class="contactInfo">
-                                <ul class="contactInfo__list-contacts-info">
-                                    <li>
-                                        <a title="Позвонить на Киевстар" href="tel:0988351315"><i
-                                                    class="fa fa-phone"></i>&nbsp;(098)83-51-315</a>
-                                    </li>
-                                    <li>
-                                        <a title="Позвонить на Life)" href="tel:0938875395"><i class="fa fa-phone"></i>&nbsp;(093)88-75-395</a>
-                                    </li>
-                                    <li>
-                                        <a title="График работы, условия оплаты и доставки" href="#">
-                                            <meta content="Mo-Fr 10:00-19:00">
-                                            <i class="fa fa-clock-o"></i>&nbsp;10:00-19:00&nbsp;пн-пт</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="logoInfo">
-                                <img class="logoInfo__logo-img" src="img-static/good.jpg" alt="">
-                            </div>
-                            <div class="userInfo">
-                                <ul class="userInfo__listInfo">
-                                    <li><a href="#">Ввойти в кабинет</a></li>
-                                    <li><a href="#">Регистрация</a></li>
-                                    <li><a href="#">Мой профиль</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%- include ../../parts/menuInfoSection.ejs %>
                 <!--/* ORDER-TOP*/-->
                 <div class="tittleOrderForm">Оформление заказа</div>
                 <div class="formOrderMain">
@@ -93,7 +51,7 @@
                                     <td  data-label="Удалить"><span class="deleteCross">X</span></td>
                                 </tr>
                                 <tr>
-                                    <td data-label="Фото"><img class="imgINOrderTable" src="img-static/arrow_down.png" alt=""></td>
+                                    <td data-label="Фото"><img class="imgINOrderTable" src="img-static/1.png" alt=""></td>
                                     <td data-label="Описание">Белый пластиковый чехол Soft Touch для MacBook Pro 13" Retina</td>
                                     <td data-label="Кол-во">
                                         <div class="countCartInTableContainer">
@@ -202,23 +160,10 @@
     <%- include ../../parts/footer.ejs %>
     <!--footer end-->
 
-
-    <!--webpack-->
-    <!--<script type="text/html"  src="assets/common.b.js"></script>-->
-
-
-    <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/common_css.js"></script>
-    <script type="text/javascript" src="js/order.js"></script>
-
-    <!--<script src="assets/vendor.b.js"></script>-->
-    <!--<script src="assets/startToo.b.js"></script>-->
-    <!--<script src="assets/app.b.js"></script>-->
-    <!--webpack-end-->
-
-    <!--static-->
-    <!--<script type="text/javascript" src="js/function.js"></script>-->
-    <!--static-end-->
 </div>
 </body>
+
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/common_css.js"></script>
+<script type="text/javascript" src="js/<%= htmlWebpackPlugin.options.data.js %>.js"></script>
 </html>

@@ -26,7 +26,10 @@ const common = merge([
       'index': './pages/index/index.js',
       'blog': './pages/blog/blog.js',
       'test': './pages/test/test.js',
-      'order': './pages/order/order.js'
+      'order': './pages/order/order.js',
+      'card': './pages/card/card.js',
+      'cashback-and-exchange': './pages/landings/cashback-and-exchange/cashback-and-exchange.js',
+      'payment-and-delivery': './pages/landings/payment-and-delivery/payment-and-delivery.js'
     },
     output: {
       path: path.resolve(__dirname, './build'),
@@ -55,18 +58,25 @@ const common = merge([
       //   './build/fonts',
       //   './build/images',
       //   './build/js']),
-      new HtmlWebpackPlugin({
-        filename: 'index.html',
-        chunks: ['index', 'common', 'common_css'],
-        template: 'ejs-render-loader!./source/pages/index/index.ejs',
-        inject: 'body'
-      }),
-      new HtmlWebpackPlugin({
-        filename: 'order.html',
-        chunks: ['order', 'common', 'common_css'],
-        template: 'ejs-render-loader!./source/pages/order/order.ejs',
-        inject: 'body'
-      }),
+      // new HtmlWebpackPlugin({
+      //   filename: 'index.html',
+      //   chunks: ['index', 'common', 'common_css'],
+      //   data: {title: 'index', js: 'js/index.js'},
+      //   template: 'ejs-render-loader!./source/pages/index/index.ejs',
+      //   inject: 'body'
+      // }),
+      // new HtmlWebpackPlugin({
+      //   filename: 'order.html',
+      //   chunks: ['order', 'common', 'common_css'],
+      //   template: 'ejs-render-loader!./source/pages/order/order.ejs',
+      //   inject: 'body'
+      // }),
+      // new HtmlWebpackPlugin({
+      //   filename: 'card.html',
+      //   chunks: ['card', 'common', 'common_css'],
+      //   template: 'ejs-render-loader!./source/pages/card/card.ejs',
+      //   inject: 'body'
+      // }),
       // new HtmlWebpackPlugin({
       //   filename: 'test.html',
       //   template: './pages/test/test.ejs',
@@ -77,20 +87,20 @@ const common = merge([
       //   //   collapseWhitespace: true
       //   // }
       // }),
-      new HtmlWebpackPlugin({
-        // hash: true,
-        filename: 'test.html',
-        chunks: ['test', 'common', 'common_css'],
-        // template: 'ejs-render-loader!./source/pages/test/test.ejs',
-        data: {name: 'den'},
-        template: './pages/test/test.ejs',
-        inject: 'body'
-      }),
-      new HtmlWebpackPlugin({
-        filename: 'blog.html',
-        chunks: ['blog', 'common', 'common_css'],
-        template: './pages/blog/blog.pug'
-      }),
+      // new HtmlWebpackPlugin({
+      //   // hash: true,
+      //   filename: 'test.html',
+      //   chunks: ['test', 'common', 'common_css'],
+      //   // template: 'ejs-render-loader!./source/pages/test/test.ejs',
+      //   data: {name: 'den'},
+      //   template: './pages/test/test.ejs',
+      //   inject: 'body'
+      // }),
+      // new HtmlWebpackPlugin({
+      //   filename: 'blog.html',
+      //   chunks: ['blog', 'common', 'common_css'],
+      //   template: './pages/blog/blog.pug'
+      // }),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'common'
       }),

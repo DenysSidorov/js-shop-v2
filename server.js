@@ -25,20 +25,36 @@ app.set('view engine', 'ejs');
 //   res.render('index/index');
 // });
 
-app.get(['/d','/index',  '/',''], function(req, res) {
-  let data  = {title: 'index', js: 'js/index.js'}
-  let wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+app.get(['/index',  '/',''], function(req, res) {
+  const data  = {title: 'index', js: 'index', css: 'index'};
+  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('index/index', wrapper);
 });
 
 app.get('/order', function(req, res) {
-  res.render('order/order');
+  const data  = {title: 'order', js: 'order', css: 'order'};
+  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('order/order', wrapper);
 });
 
-app.get('/test', function(req, res) {
-  let data  = {name: 'den'}
-  let wrapper = {htmlWebpackPlugin: {options: {data: data}}};
-  res.render('test/test', wrapper);
+app.get('/card', function(req, res) {
+  const data  = {title: 'card', js: 'card', css: 'card'};
+  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('card/card', wrapper);
+});
+
+app.get('/payment-and-delivery', function(req, res) {
+  const data  = {title: 'Оплата и доставка', js: 'payment-and-delivery',
+    css: 'payment-and-delivery'};
+  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('landings/payment-and-delivery/payment-and-delivery', wrapper);
+});
+
+app.get('/cashback-and-exchange', function(req, res) {
+  const data  = {title: 'Возврат и обмен', js: 'cashback-and-exchange',
+    css: 'cashback-and-exchange'};
+  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('landings/cashback-and-exchange/cashback-and-exchange', wrapper);
 });
 
 app.use(express.static(path.join(__dirname, '/build/')));
