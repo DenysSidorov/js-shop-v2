@@ -63,6 +63,12 @@ app.get('/about-us', function(req, res) {
   res.render('landings/about-us/about-us', wrapper);
 });
 
+app.get('/contacts', function(req, res) {
+  const data  = {title: 'Контакты', js: 'contacts', css: 'contacts'};
+  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('landings/contacts/contacts', wrapper);
+});
+
 
 app.use(express.static(path.join(__dirname, '/build/')));
 
