@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+
+    <title><%= htmlWebpackPlugin.options.data.title %></title>
+    <link href="./css/common_css.css" rel="stylesheet">
+    <link href="./css/<%= htmlWebpackPlugin.options.data.css %>.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <!--top-menu start-->
+        <%- include ../../../parts/topMenu.ejs %>
+        <!--top-menu end-->
+        <div class="mainContainerSection fullWidth left">
+            <div class="container">
+                <div class="preloader-main-content"></div>
+                <!--CONTENT TOP-->
+
+                <div class="contacts_mainContainer">
+                    Онлайн магазин. Украина, г. Одесса. Телефон: 0936877613
+                </div>
+                <!--CONTENT FOOTER -->
+            </div>
+        </div>
+    </div>
+    <!--<div class="fullHeight"></div>-->
+
+    <!--footer start-->
+    <%- include ../../../parts/footer.ejs %>
+    <!--footer end-->
+
+    <!--Кнопка вверх-->
+    <!--<div class="upBtn">-->
+    <!--<div id="scrollup"><img alt="Прокрутить вверх" src="/img/up.png"></div>-->
+    <!--</div>-->
+    <!--Кнопка вверх-->
+
+</div>
+
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/common_css.js"></script>
+<script type="text/javascript" src="js/<%= htmlWebpackPlugin.options.data.js %>.js"></script>
+
+</body>
+</html>
