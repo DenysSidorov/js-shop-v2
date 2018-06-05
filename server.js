@@ -2,16 +2,20 @@ import express from 'express';
 import bodyParse from "body-parser";
 import morgan from "morgan";
 import path from "path";
+var request = require('request');
 import fs from "fs";
 import ejs from 'ejs';
 import config from './config';
-
 import errorMiddleWare from "./app-server/middlewares/errors";
+
+import goodRoute from "./app-server/routes/goodRoute";
+
+
 import * as GoodController from './app-server/controllers/good';
+import Good from './app-server/models/good';
 
 // db connection
 import './app-server/connection';
-import Good from './app-server/models/good';
 
 
 
@@ -19,6 +23,8 @@ let app = express();
 app.disable('x-powered-by'); // Отключить определение, что это express
 
 app.use(bodyParse.json());
+app.use(bodyParse.urlencoded({extended: true}));
+app.use(morgan('tiny')); // Настройка логирования, см. документация на npmjs.com
 // app.set('view engine', 'ejs');
 // app.set('views', path.join(__dirname, './source/pages'));
 
@@ -30,7 +36,7 @@ var cors = require('cors');
 
 console.log('DEV MODE = ', process.env.NODE_ENV);
 
-
+app.use('/api/goods',/*cors(),*/ goodRoute);
 
 
 
@@ -47,12 +53,25 @@ app.get('/t',async (req, res) => {
 //   res.render('index/index');
 // });
 
-app.get(['/index',  '/',''], async (req, res) => {
+app.get(['/index',  '/',''], async (req, resp, next) => {
   const data  = {title: 'index', js: 'index', css: 'index'};
-  const goods = await GoodController.getAll();
-  console.log('************',goods);
+  // const goods = await GoodController.getAll(req, resp, next);
+
+  request('http://localhost:5006/api/goods/', function (error, response, body) {
+    if(error){
+      console.log(error);
+    }
+    if (!error && response.statusCode == 200) {
+      var info = JSON.parse(body)
+      // do more stuff
+      console.log('-------body------', body);
+      console.log('--------info-----', info);
+    }
+  })
+
+  // console.log('************',goods);
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
-  res.render('index/index', wrapper);
+  resp.render('index/index', wrapper);
 });
 
 app.get('/order', function(req, res) {
@@ -98,10 +117,20 @@ app.use(express.static(path.join(__dirname, '/build/')));
 
 app.use(errorMiddleWare); // Обработчик ошибок должен быть последним
 
+app.all('*', (req, resp) => resp.status(404).json({
+  message: "Resource not found, API-SHOP",
+  type: 404
+}));
+
 process.on('uncaughtException', function (err) {
   console.error((new Date).toUTCString() + ' uncaughtException:', err.message);
   console.error(err.stack);
   process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, p) => {
+  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+  // application specific logging, throwing an error, or other logic here
 });
 
 app.listen(config.backend.port, (er) => {
