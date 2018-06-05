@@ -6,7 +6,7 @@ import fs from "fs";
 import ejs from 'ejs';
 import config from './config';
 
-import goodRoute from "./app-server/routes/goodRoute";
+import * as GoodController from './app-server/controllers/good';
 
 // db connection
 import './app-server/connection';
@@ -46,8 +46,10 @@ app.get('/t',async (req, res) => {
 //   res.render('index/index');
 // });
 
-app.get(['/index',  '/',''], function(req, res) {
+app.get(['/index',  '/',''], async (req, res) => {
   const data  = {title: 'index', js: 'index', css: 'index'};
+  const goods = await GoodController.getAll();
+  console.log('************',goods);
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('index/index', wrapper);
 });
