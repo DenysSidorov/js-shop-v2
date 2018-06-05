@@ -4,23 +4,23 @@ const GoodSchema = new Schema({
     _id: { type: String, required: true },
     // _id:{type: Number},
     name: { type: String, require: true },
-    model: { type: String, require: true },
-    createdAt: { type: Date, default: Date.now },
-    size : {type : Array, require: true},
-    comments : {type : Array, require: true},
     price : { type: Number, require: true },
-    photo : {type : Array, require: true},
-    code : { type: String, require: true },
-    'desc-short' : {type: String, require: true},
-    'desc-full' : {type: String, require: true},
-    tags : {type : Array, require: true},
-    sail : {type : Number, require: true},
-    isNewGood : {type: Boolean, require: true},
     category : {type : Array, require: true },
-    isExists : {type: Boolean, require: true},
-    producer: {type: String, require: true},
+    model: { type: String },
+    // createdAt: { type: Date, default: Date.now },
+    size : {type : Array},
+    comments : {type : Array},
+    photo : {type : Array},
+    code : { type: String },
+    'desc-short' : {type: String},
+    'desc-full' : {type: String},
+    tags : {type : Array},
+    sail : {type : Number},
+    isNewGood : {type: Boolean},
+    isExists : {type: Boolean},
+    producer: {type: String},
     views: {type: Number, default: 0}
-});
+}, {timestamps: true});
 
 export default mongoose.model('Good', GoodSchema);
 var t = {
