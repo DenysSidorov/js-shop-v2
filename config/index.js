@@ -6,7 +6,7 @@ var configApp = {
     },
     backend: {
         port: process.env.PORT, //5006
-        database: process.env.MONGODB_URI, // 'mongodb://localhost:27017/shop'
+        database: process.env.MONGODB_URI || 'mongodb://localhost:27017/shop',
         domain: process.env.SERVER_DOMAIN,
         secretWord: 'verysecretkey', //process.env.SECRET_WORD, // 'verysecretkey'
         mailSend: {

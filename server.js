@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParse from "body-parser";
-import mongoose from "mongoose";
 import morgan from "morgan";
 import path from "path";
 import fs from "fs";
@@ -9,10 +8,14 @@ import config from './config';
 
 import goodRoute from "./app-server/routes/goodRoute";
 
+// db connection
+import './app-server/connection';
+import Good from './app-server/models/good';
+
+
+
 let app = express();
 app.disable('x-powered-by'); // Отключить определение, что это express
-/** Запуск приожения на порте*/
-console.log(process.env.PORT, 'port');
 
 app.use(bodyParse.json());
 // app.set('view engine', 'ejs');
@@ -22,9 +25,22 @@ app.engine('ejs', require('ejs-locals'));
 app.set('views', __dirname + '/source/pages');
 app.set('view engine', 'ejs');
 
-// app.get('/', function (req, res) {
-//   res.send('Hello World!');
-// });
+var cors = require('cors');
+
+console.log('DEV MODE = ', process.env.NODE_ENV);
+
+
+
+
+
+
+
+
+app.get('/t',async (req, res) => {
+  let result = await Good.find({});
+  console.log('////',result);
+  res.send(result);
+});
 //
 // app.get('/', function(req, res) {
 //   res.render('index/index');
