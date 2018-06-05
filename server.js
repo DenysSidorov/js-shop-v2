@@ -7,6 +7,8 @@ import fs from "fs";
 import ejs from 'ejs';
 import config from './config';
 
+import goodRoute from "./app-server/routes/goodRoute";
+
 let app = express();
 app.disable('x-powered-by'); // Отключить определение, что это express
 /** Запуск приожения на порте*/
