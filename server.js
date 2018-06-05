@@ -6,6 +6,7 @@ import fs from "fs";
 import ejs from 'ejs';
 import config from './config';
 
+import errorMiddleWare from "./app-server/middlewares/errors";
 import * as GoodController from './app-server/controllers/good';
 
 // db connection
@@ -94,6 +95,14 @@ app.get('/contacts', function(req, res) {
 
 
 app.use(express.static(path.join(__dirname, '/build/')));
+
+app.use(errorMiddleWare); // Обработчик ошибок должен быть последним
+
+process.on('uncaughtException', function (err) {
+  console.error((new Date).toUTCString() + ' uncaughtException:', err.message);
+  console.error(err.stack);
+  process.exit(1);
+});
 
 app.listen(config.backend.port, (er) => {
   er && console.log(er);
