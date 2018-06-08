@@ -98,10 +98,19 @@ app.get('/contacts', function (req, res) {
   res.render('landings/contacts/contacts', wrapper);
 });
 
-app.get('/products/:id', function (req, res) {
-  const data = {title: 'card', js: 'card', css: 'card'};
-  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
-  res.render('card/card', wrapper);
+app.get('/products/:id', async function (req, resp) {
+  const id = '5a142273bc077735607fec4e';
+  try {
+    let result = await axios.get(`http://localhost:5006/api/goods/${id}`);
+    const data = {title: 'card', js: 'card', css: 'card', card: result.data[0]};
+    console.log('///////////',data.card);
+    resp.render('card/card', data);
+  } catch (er) {
+    console.log(er.response | er);
+    // TODO ADD ERROR PAGE
+    resp.send({status: 'Error'})
+  }
+
 });
 
 
