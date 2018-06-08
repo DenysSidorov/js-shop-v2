@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParse from "body-parser";
 import morgan from "morgan";
 import path from "path";
+import axios from 'axios';
+
 var request = require('request');
 import fs from "fs";
 import ejs from 'ejs';
@@ -16,7 +18,6 @@ import Good from './app-server/models/good';
 
 // db connection
 import './app-server/connection';
-
 
 
 let app = express();
@@ -36,16 +37,12 @@ var cors = require('cors');
 
 console.log('DEV MODE = ', process.env.NODE_ENV);
 
-app.use('/api/goods',/*cors(),*/ goodRoute);
+app.use('/api/goods', /*cors(),*/ goodRoute);
 
 
-
-
-
-
-app.get('/t',async (req, res) => {
+app.get('/t', async (req, res) => {
   let result = await Good.find({});
-  console.log('////',result);
+  console.log('////', result);
   res.send(result);
 });
 //
@@ -53,61 +50,59 @@ app.get('/t',async (req, res) => {
 //   res.render('index/index');
 // });
 
-app.get(['/index',  '/',''], async (req, resp, next) => {
-  const data  = {title: 'index', js: 'index', css: 'index'};
-  // const goods = await GoodController.getAll(req, resp, next);
+app.get(['/index', '/', ''], async (req, resp, next) => {
 
-  request('http://localhost:5006/api/goods/', function (error, response, body) {
-    if(error){
-      console.log(error);
-    }
-    if (!error && response.statusCode == 200) {
-      var info = JSON.parse(body)
-      // do more stuff
-      console.log('-------body------', body);
-      console.log('--------info-----', info);
-    }
-  })
+  try {
+    const result = await axios({method: 'get', url: 'http://localhost:5006/api/goods/'});
 
-  // console.log('************',goods);
-  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
-  resp.render('index/index', wrapper);
+    const data = {title: 'index', js: 'index', css: 'index', goods: result.data};
+
+    resp.render('index/index', data);
+  } catch (er) {
+    console.log(er.response | er);
+    resp.send({status: 'Error'})
+  }
+
 });
 
-app.get('/order', function(req, res) {
-  const data  = {title: 'order', js: 'order', css: 'order'};
+app.get('/order', function (req, res) {
+  const data = {title: 'order', js: 'order', css: 'order'};
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('order/order', wrapper);
 });
 
-app.get('/card', function(req, res) {
-  const data  = {title: 'card', js: 'card', css: 'card'};
+app.get('/card', function (req, res) {
+  const data = {title: 'card', js: 'card', css: 'card'};
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('card/card', wrapper);
 });
 
-app.get('/payment-and-delivery', function(req, res) {
-  const data  = {title: 'Оплата и доставка', js: 'payment-and-delivery',
-    css: 'payment-and-delivery'};
+app.get('/payment-and-delivery', function (req, res) {
+  const data = {
+    title: 'Оплата и доставка', js: 'payment-and-delivery',
+    css: 'payment-and-delivery'
+  };
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('landings/payment-and-delivery/payment-and-delivery', wrapper);
 });
 
-app.get('/cashback-and-exchange', function(req, res) {
-  const data  = {title: 'Возврат и обмен', js: 'cashback-and-exchange',
-    css: 'cashback-and-exchange'};
+app.get('/cashback-and-exchange', function (req, res) {
+  const data = {
+    title: 'Возврат и обмен', js: 'cashback-and-exchange',
+    css: 'cashback-and-exchange'
+  };
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('landings/cashback-and-exchange/cashback-and-exchange', wrapper);
 });
 
-app.get('/about-us', function(req, res) {
-  const data  = {title: 'О нас', js: 'about-us', css: 'about-us'};
+app.get('/about-us', function (req, res) {
+  const data = {title: 'О нас', js: 'about-us', css: 'about-us'};
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('landings/about-us/about-us', wrapper);
 });
 
-app.get('/contacts', function(req, res) {
-  const data  = {title: 'Контакты', js: 'contacts', css: 'contacts'};
+app.get('/contacts', function (req, res) {
+  const data = {title: 'Контакты', js: 'contacts', css: 'contacts'};
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('landings/contacts/contacts', wrapper);
 });
