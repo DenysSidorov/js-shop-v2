@@ -51,30 +51,21 @@ app.get('/t', async (req, res) => {
 // });
 
 app.get(['/index', '/', ''], async (req, resp, next) => {
-
   try {
     const result = await axios({method: 'get', url: 'http://localhost:5006/api/goods/'});
-
     const data = {title: 'index', js: 'index', css: 'index', goods: result.data};
-
     resp.render('index/index', data);
   } catch (er) {
     console.log(er.response | er);
+    // TODO ADD ERROR PAGE
     resp.send({status: 'Error'})
   }
-
 });
 
 app.get('/order', function (req, res) {
   const data = {title: 'order', js: 'order', css: 'order'};
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('order/order', wrapper);
-});
-
-app.get('/card', function (req, res) {
-  const data = {title: 'card', js: 'card', css: 'card'};
-  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
-  res.render('card/card', wrapper);
 });
 
 app.get('/payment-and-delivery', function (req, res) {
@@ -105,6 +96,12 @@ app.get('/contacts', function (req, res) {
   const data = {title: 'Контакты', js: 'contacts', css: 'contacts'};
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('landings/contacts/contacts', wrapper);
+});
+
+app.get('/products/:id', function (req, res) {
+  const data = {title: 'card', js: 'card', css: 'card'};
+  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('card/card', wrapper);
 });
 
 
