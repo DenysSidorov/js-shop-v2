@@ -81,7 +81,7 @@
                             <div class="mainContainerForCard__mainInfoBlock_fourBlockPrice_quicly">
                                 КУПИТЬ СРАЗУ
                             </div>
-                            <div class="mainContainerForCard__mainInfoBlock_fourBlockPrice_cart">В
+                            <div data-id="<%= card._id%>" id="toOrderId" class="mainContainerForCard__mainInfoBlock_fourBlockPrice_cart">В
                                 КОРЗИНУ
                             </div>
                         </div>
@@ -750,6 +750,7 @@
 
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript" src="../js/common_css.js"></script>
+<script type="text/javascript" src="../js/all.js"></script>
 <script type="text/javascript" src="../js/<%= js %>.js"></script>
 
 </body>

@@ -99,7 +99,9 @@ app.get('/contacts', function (req, res) {
 });
 
 app.get('/products/:id', async function (req, resp) {
-  const id = '5a142273bc077735607fec4e';
+
+  const id = req.params.id;
+
   try {
     let result = await axios.get(`http://localhost:5006/api/goods/${id}`);
     const data = {title: 'card', js: 'card', css: 'card', card: result.data[0]};

@@ -23,6 +23,8 @@ const common = merge([
     entry: {
       'common_css': ['./less/main.less', './less/reset.less', './less/font-awesome.less'],
       // 'common_css': './less/reset.less',
+      'all': './components/all-pages/index.js',
+
       'index': './pages/index/index.js',
       'blog': './pages/blog/blog.js',
       'test': './pages/test/test.js',
