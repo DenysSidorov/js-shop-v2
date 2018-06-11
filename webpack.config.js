@@ -43,6 +43,16 @@ const common = merge([
     module: {
       rules: [
         {
+          test: /\.(js|jsx)$/,
+          include: path.resolve(__dirname, 'source'),
+          exclude: /(node_modules|bower_components)/,
+          use: [{
+            loader: 'babel-loader',
+            options: {presets: ['es2015', "es2016", "es2017", 'react', 'stage-0']},
+
+          }],
+        },
+        {
           test: /\.html$/,
           loader: 'html-loader'
         },
