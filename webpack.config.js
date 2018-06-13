@@ -26,9 +26,9 @@ const common = merge([
       'all': './components/all-pages/index.js',
 
       'index': './pages/index/index.js',
-      'blog': './pages/blog/blog.js',
-      'test': './pages/test/test.js',
-      'order': './pages/order/order.js',
+      // 'blog': './pages/blog/blog.js',
+      // 'test': './pages/test/test.js',
+      'order': ["babel-polyfill","./pages/order/order.js"],
       'card': './pages/card/card.js',
       'cashback-and-exchange': './pages/landings/cashback-and-exchange/cashback-and-exchange.js',
       'payment-and-delivery': './pages/landings/payment-and-delivery/payment-and-delivery.js',
