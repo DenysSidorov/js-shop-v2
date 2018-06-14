@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from 'react-redux';
 class AllPrice extends React.Component {
 
 
@@ -14,15 +13,8 @@ class AllPrice extends React.Component {
                     <div></div>
             </div>
         )
-
-    }
-}
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        cart: state.cart.items
     }
 }
 
 
-export default connect(mapStateToProps, )(AllPrice);
+export default AllPrice;

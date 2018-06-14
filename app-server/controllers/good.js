@@ -1,4 +1,5 @@
 import Good from "../models/good";
+import mongoose, {Types} from 'mongoose';
 
 
 export async function getAll(req, resp, next) {
@@ -70,6 +71,20 @@ export async function getById(req, resp, next) {
     });
   }
   resp.json(good);
+}
+
+export async function getByIds(req, resp, next) {
+  var ids = (req.query.ids).split(',') ;
+  try {
+    ids = ids.map( ele => new Types.ObjectId(ele));
+    var goods = await Good.find({_id :   {$in : ids}});
+  } catch ({message}) {
+    return next({
+      status: 500,
+      message
+    });
+  }
+  resp.json(goods);
 }
 
 export async function getSimilar(req, resp, next) {

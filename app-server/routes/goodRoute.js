@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', GoodController.getAll);
 router.get('/tags', GoodController.getUniqCategory);
 router.get('/popular', GoodController.getPopular);
+router.get('/goods-array', GoodController.getByIds);
 router.get('/:id', GoodController.getById);
 router.post('/:id/similar', GoodController.getSimilar);
 router.post('/', GoodController.create);
