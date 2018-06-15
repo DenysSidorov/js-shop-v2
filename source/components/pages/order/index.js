@@ -58,9 +58,30 @@ class OrderPage extends React.Component {
     this.initCadd();
   }
 
-  updateFromLocal = (id) => {
-    // let newCart  = this.state.cart.filter(el => el._id != id);
+  deleteGoodByIdState = (id) => {
+    let newCart  = this.state.cart.filter(el => el._id != id);
+    this.setState({cart: newCart});
+  }
 
+  decrementGoodByIdState= (id)=> {
+    let newCart  = this.state.cart.map((el) => {
+      if(el._id == id){
+        return {...el, count: el.count - 1 }
+      } else {
+        return el
+      }
+    });
+    this.setState({cart: newCart});
+  }
+
+  incrementGoodByIdState= (id)=> {
+    let newCart  = this.state.cart.map((el) => {
+      if(el._id == id){
+        return {...el, count: el.count + 1 }
+      } else {
+        return el
+      }
+    });
     this.setState({cart: newCart});
   }
 
@@ -83,7 +104,12 @@ class OrderPage extends React.Component {
             <span style={{fontSize: '2rem'}}>Корзина пуста!</span>
           </div>
           : <div className="formOrderMain">
-            <GoodsTable updateFromLocal={this.updateFromLocal} cart={this.state.cart}/>
+            <GoodsTable
+              cart={this.state.cart}
+              deleteGoodByIdState={this.deleteGoodByIdState}
+              incrementGoodByIdState={this.incrementGoodByIdState}
+              decrementGoodByIdState={this.decrementGoodByIdState}
+            />
             {/*<WaysDevPay goods={this.state.cart} />*/}
           </div>}
 

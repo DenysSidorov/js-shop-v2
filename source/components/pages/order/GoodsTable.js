@@ -2,7 +2,7 @@ import React from "react";
 // import { connect } from 'react-redux';
 // import {Link} from 'react-router-dom';
 import st from './index.less'
-import {deleteGoodsById} from '../../all-pages/cart-localdata';
+import {deleteGoodsById, incrementGoodsById, decrementGoodsById} from '../../all-pages/cart-localdata';
 // import { bindActionCreators } from 'redux';
 // import {pushToCart, deleteFromCart, incrementItem, decrementItem} from '../../../../reducers/cart';
 import AllPrice from './AllPrice';
@@ -16,13 +16,17 @@ class GoodsTable extends React.Component {
   deleteItem = (el) => {
     let id = el._id;
     deleteGoodsById(id);
-    this.props.updateFromLocal(id);
+    this.props.deleteGoodByIdState(id);
   }
 
-  incrementItem = (el) => {
-    let id = el._id;
-    deleteGoodsById(id);
-    this.props.updateFromLocal(id);
+  incrementItem = (id) => {
+    incrementGoodsById(id);
+    this.props.incrementGoodByIdState(id);
+  }
+
+  decrementItem = (id) => {
+    decrementGoodsById(id);
+    this.props.decrementGoodByIdState(id);
   }
 
   render() {

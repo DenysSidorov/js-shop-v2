@@ -42,6 +42,47 @@ export const deleteGoodsById = (id) => {
   } else return [];
 }
 
+export const incrementGoodsById = (id) => {
+  if (!localdata.isEmptyStorage('cart')) {
+    try {
+      let cart = localdata.getLocalData('cart');
+      cart = JSON.parse(cart);
+      let newCart = cart.map((el) => {
+        if(el.id == id){
+          return {...el, count: el.count + 1 }
+        } else {
+          return el
+        }
+      });
+      localdata.setLocalData('cart', JSON.stringify(newCart));
+    }
+    catch (er) {
+      console.error(er);
+      // localdata.deleteLocalData('cart');
+    }
+  } else return [];
+}
+export const decrementGoodsById = (id) => {
+  if (!localdata.isEmptyStorage('cart')) {
+    try {
+      let cart = localdata.getLocalData('cart');
+      cart = JSON.parse(cart);
+      let newCart = cart.map((el) => {
+        if(el.id == id){
+          return {...el, count: el.count - 1 }
+        } else {
+          return el
+        }
+      });
+      localdata.setLocalData('cart', JSON.stringify(newCart));
+    }
+    catch (er) {
+      console.error(er);
+      // localdata.deleteLocalData('cart');
+    }
+  } else return [];
+}
+
 export const addGoodById = (id) => {
   if (!localdata.isEmptyStorage('cart')) {
     try {
