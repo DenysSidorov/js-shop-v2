@@ -66,7 +66,11 @@ class OrderPage extends React.Component {
   decrementGoodByIdState= (id)=> {
     let newCart  = this.state.cart.map((el) => {
       if(el._id == id){
-        return {...el, count: el.count - 1 }
+        if (el.count > 1) {
+          return {...el, count: el.count - 1}
+        } else {
+          return el
+        }
       } else {
         return el
       }

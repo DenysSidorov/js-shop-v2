@@ -1,11 +1,11 @@
 import './card.scss';
-import localdata from '../../components/libs/localdata';
+import {incrementGoodsById} from '../../components/all-pages/cart-localdata';
 
 let orderIco = document.getElementById('main-cart__ico');
 let toOrderBtn = document.getElementById('toOrderId');
 
 toOrderBtn.addEventListener('click', (el) => {
-  addToLocalId(toOrderBtn.dataset.id);
+  incrementGoodsById(toOrderBtn.dataset.id);
 
   let currentOrders = orderIco.getAttribute('data-js_count');
   orderIco.setAttribute('data-js_count', Number(currentOrders, 10) + 1);

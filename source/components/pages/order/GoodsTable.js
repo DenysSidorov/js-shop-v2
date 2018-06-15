@@ -47,7 +47,7 @@ class GoodsTable extends React.Component {
             </thead>
             <tbody>
             {goods.map(el => {
-              return <tr key={el._id}>
+              return el.count > 0 && <tr key={el._id}>
                 <td data-label="Фото"><img className="imgINOrderTable"
                                            src={`/img-static/${el.photo[0]}`}
                                            alt=""/></td>
@@ -58,7 +58,7 @@ class GoodsTable extends React.Component {
                 <td data-label="Кол-во">
                   <div className="countCartInTableContainer">
                     <button onClick={() => {
-                      this.props.decrementItem(el._id)
+                      this.decrementItem(el._id)
                     }}
                             className="countCartInTableContainer__countMinus">-
                     </button>

@@ -1,6 +1,6 @@
 import localdata from '../libs/localdata';
 
-// [{id: "1a", count: 3}, {id: "2b", count: 18}]
+
 export const getGoodsArray = () => {
   if (!localdata.isEmptyStorage('cart')) {
     try {
@@ -48,8 +48,8 @@ export const incrementGoodsById = (id) => {
       let cart = localdata.getLocalData('cart');
       cart = JSON.parse(cart);
       let newCart = cart.map((el) => {
-        if(el.id == id){
-          return {...el, count: el.count + 1 }
+        if (el.id == id) {
+          return {...el, count: el.count + 1}
         } else {
           return el
         }
@@ -68,8 +68,12 @@ export const decrementGoodsById = (id) => {
       let cart = localdata.getLocalData('cart');
       cart = JSON.parse(cart);
       let newCart = cart.map((el) => {
-        if(el.id == id){
-          return {...el, count: el.count - 1 }
+        if (el.id == id) {
+          if (el.count > 1) {
+            return {...el, count: el.count - 1}
+          } else {
+            return el
+          }
         } else {
           return el
         }
