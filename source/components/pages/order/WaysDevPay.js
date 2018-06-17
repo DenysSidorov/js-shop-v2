@@ -4,16 +4,17 @@ import React from "react";
 import axios from "axios";
 // import {push} from "react-router-redux";
 // import Dropdown from "react-dropdown";
-import urlApi from '../../../../api/urlApi';
-import Confirm from "../../WrapperApp/ConfirmBlock";
-import {
-  pushToCart,
-  deleteFromCart,
-  incrementItem,
-  decrementItem,
-  deleteAll
-} from "../../../../reducers/cart";
-import GoodsTable from "./GoodsTable";
+// import urlApi from '../../../../api/urlApi';
+// import Confirm from "../../WrapperApp/ConfirmBlock";
+
+// import {
+//   pushToCart,
+//   deleteFromCart,
+//   incrementItem,
+//   decrementItem,
+//   deleteAll
+// } from "../../../../reducers/cart";
+// import GoodsTable from "./GoodsTable";
 
 // http://fraserxu.me/react-dropdown/
 class WaysDevPay extends React.Component {
@@ -94,7 +95,7 @@ class WaysDevPay extends React.Component {
     }
     // this.setState({orderInputErrors: [...orderInputErrors, nameErr]})
 
-console.log(localArr.length, name.length == 0 && address.length == 0 && phone.length == 0 );
+    console.log(localArr.length, name.length == 0 && address.length == 0 && phone.length == 0);
     if (localArr.length > 0) {
       this.setState({
         isNormal: false,
@@ -157,8 +158,9 @@ console.log(localArr.length, name.length == 0 && address.length == 0 && phone.le
     });
 
     try {
-      let response = await
-        axios.post(`${urlApi}/api/orders`, order);
+      //let response = await axios.post(`${urlApi}/api/orders`, order);
+
+      let response = false;
       if (response) {
         // TODO disable SPINNER
         // TODO delete order from main redux store
@@ -175,7 +177,7 @@ console.log(localArr.length, name.length == 0 && address.length == 0 && phone.le
     } catch (e) {
       console.log(e);
     } finally {
-      console.log();
+      console.log('finally');
     }
   }
 
@@ -195,6 +197,7 @@ console.log(localArr.length, name.length == 0 && address.length == 0 && phone.le
                      className="accordion_toggle"
                      name="accordion-01"
                      id="toggle-01"
+                     onChange={()=>{}}
                      checked={delivery == 'newpost' ? 'checked' : null}
               />
               <label onClick={this.chDelivery.bind(this, 'newpost')} className="accordion_trigger"
@@ -214,6 +217,7 @@ console.log(localArr.length, name.length == 0 && address.length == 0 && phone.le
                      className="accordion_toggle"
                      name="accordion-01"
                      id="toggle-02"
+                     onChange={()=>{console.log('kh')}}
                      checked={delivery == 'intime' ? 'checked' : null}/>
               <label onClick={this.chDelivery.bind(this, 'intime')} className="accordion_trigger"
                      htmlFor="toggle-02">Доставка по Украине
@@ -228,31 +232,35 @@ console.log(localArr.length, name.length == 0 && address.length == 0 && phone.le
 
           <div className="tittleWAyName" data-count="2">Способ оплаты</div>
           <div className="paymentWayOrder">
-            <Dropdown
-              options={paymentVariants}
-              onChange={this.chPayment.bind(this)}
-              value={paymentVariants[0]}
-            />
+            {/*<Dropdown*/}
+              {/*options={paymentVariants}*/}
+              {/*onChange={this.chPayment.bind(this)}*/}
+              {/*value={paymentVariants[0]}*/}
+            {/*/>*/}
           </div>
 
           <div className="tittleWAyName" data-count="3">Способ доставки</div>
 
           <div className="userDataForOrder">
             <p>Имя и фамилия <span className="red">*</span></p>
-            <input value={this.state.name} onChange={this.chName.bind(this)}
+            <input value={this.state.name}
+                   onChange={this.chName.bind(this)}
                    ref={(v) => this.nameV = v}
                    type="text"
                    className="orderWaysInput" id="nameInput"/>
             <p>Мобильный телефон <span className="red">*</span></p>
-            <input value={this.state.phone} onChange={this.chPhone.bind(this)} type="text"
+            <input value={this.state.phone}
+                   onChange={this.chPhone.bind(this)} type="text"
                    ref={(v) => this.phoneV = v}
                    className="orderWaysInput" id="phoneInput"/>
             <p>Адресс доставки <span className="red">*</span></p>
-            <input value={this.state.address} onChange={this.chAddress.bind(this)}
+            <input value={this.state.address}
+                   onChange={this.chAddress.bind(this)}
                    ref={(v) => this.addressV = v}
                    type="text" className="orderWaysInput" id="cityInput"/>
             <p>Электронная почта</p>
-            <input value={this.state.email} onChange={this.chEmail.bind(this)}
+            <input value={this.state.email}
+                   onChange={this.chEmail.bind(this)}
                    ref={(v) => this.emailV = v}
                    type="text" className="orderWaysInput" id="mailInput"/>
           </div>
@@ -268,34 +276,34 @@ console.log(localArr.length, name.length == 0 && address.length == 0 && phone.le
           }
 
         </div>
-        {this.state.isShowConfirm && <Confirm
-          okHandler={this.sendDataToServer.bind(this)}
-          cancelHandler={this.handleConfirmUnmount.bind(this)}
-          unmountConfirm={this.handleConfirmUnmount.bind(this)}
-        >
+        {/*{this.state.isShowConfirm && <Confirm*/}
+          {/*okHandler={this.sendDataToServer.bind(this)}*/}
+          {/*cancelHandler={this.handleConfirmUnmount.bind(this)}*/}
+          {/*unmountConfirm={this.handleConfirmUnmount.bind(this)}*/}
+        {/*>*/}
 
-          <ul>
-            <li>
-              <div>Тип доставки:
-                {delivery == "newpost" && <span> Новая Почта</span>}
-                {delivery == "intime" && <span> Интайм</span>}
-              </div>
-              <div>Тип оплаты:
-                {payment.value == "predo" && <span> Предоплата на карту</span>}
-                {payment.value == "naloj" && <span> Наложенный платеж</span>}
-              </div>
-              <div>Имя: <span>{name}</span></div>
-              <div>Телефон: <span>{phone}</span></div>
-              <div>Адрес: <span>{address}</span></div>
-              {email && <div>Почта: <span>{email}</span></div>}
-            </li>
-          </ul>
-          <div className="maskForGoodsTableInOrder">
-            <div className="maskForGoodsTableInOrder-mask"></div>
-            <GoodsTable cart={goods}/>
-          </div>
+          {/*<ul>*/}
+            {/*<li>*/}
+              {/*<div>Тип доставки:*/}
+                {/*{delivery == "newpost" && <span> Новая Почта</span>}*/}
+                {/*{delivery == "intime" && <span> Интайм</span>}*/}
+              {/*</div>*/}
+              {/*<div>Тип оплаты:*/}
+                {/*{payment.value == "predo" && <span> Предоплата на карту</span>}*/}
+                {/*{payment.value == "naloj" && <span> Наложенный платеж</span>}*/}
+              {/*</div>*/}
+              {/*<div>Имя: <span>{name}</span></div>*/}
+              {/*<div>Телефон: <span>{phone}</span></div>*/}
+              {/*<div>Адрес: <span>{address}</span></div>*/}
+              {/*{email && <div>Почта: <span>{email}</span></div>}*/}
+            {/*</li>*/}
+          {/*</ul>*/}
+          {/*<div className="maskForGoodsTableInOrder">*/}
+            {/*<div className="maskForGoodsTableInOrder-mask"></div>*/}
+            {/*<GoodsTable cart={goods}/>*/}
+          {/*</div>*/}
 
-        </Confirm>}
+        {/*</Confirm>}*/}
       </div>
     )
 

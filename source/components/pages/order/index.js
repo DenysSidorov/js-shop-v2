@@ -3,7 +3,7 @@ import axios from 'axios';
 import {getGoodsArray, getGoodsIds} from '../../all-pages/cart-localdata';
 
 // import MenuInfoSection from "../../modules/MenuInfoSection";
-// import WaysDevPay from "./WaysDevPay";
+import WaysDevPay from "./WaysDevPay";
 import GoodsTable from "./GoodsTable";
 
 class OrderPage extends React.Component {
@@ -114,7 +114,7 @@ class OrderPage extends React.Component {
               incrementGoodByIdState={this.incrementGoodByIdState}
               decrementGoodByIdState={this.decrementGoodByIdState}
             />
-            {/*<WaysDevPay goods={this.state.cart} />*/}
+            <WaysDevPay goods={this.state.cart} />
           </div>}
 
       </div>
