@@ -26,13 +26,17 @@ class OrderPage extends React.Component {
   }
 
   async componentWillMount() {
+    console.log('ers');
     try {
       let localCart = getGoodsArray();
-      if(!localCart.length) return;
+      console.log('LocalCart', localCart.length)
+      if(!localCart.length) {
+        return false
+      };
       let result = await axios({
         method: 'get',
         url: `http://localhost:5006/api/goods/goods-array?ids=${getGoodsIds()}`
-      });;
+      });
 
       // взять и скрестить дынные с корзины и Localdata
       let newCart = result.data.map((el) => {

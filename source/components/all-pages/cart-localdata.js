@@ -12,6 +12,7 @@ export const getGoodsArray = () => {
       console.error(er);
     }
   }
+  return []
 }
 export const getGoodsIds = () => {
   if (!localdata.isEmptyStorage('cart')) {
@@ -47,6 +48,9 @@ export const incrementGoodsById = (id) => {
     try {
       let cart = localdata.getLocalData('cart');
       cart = JSON.parse(cart);
+
+
+
       let newCart = cart.map((el) => {
         if (el.id == id) {
           return {...el, count: el.count + 1}
@@ -54,6 +58,8 @@ export const incrementGoodsById = (id) => {
           return el
         }
       });
+
+
       localdata.setLocalData('cart', JSON.stringify(newCart));
     }
     catch (er) {
