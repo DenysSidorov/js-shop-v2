@@ -3,7 +3,7 @@ import React from "react";
 // import {bindActionCreators} from "redux";
 import axios from "axios";
 // import {push} from "react-router-redux";
-// import Dropdown from "react-dropdown";
+import Dropdown from "react-dropdown";
 // import urlApi from '../../../../api/urlApi';
 // import Confirm from "../../WrapperApp/ConfirmBlock";
 
@@ -232,11 +232,11 @@ class WaysDevPay extends React.Component {
 
           <div className="tittleWAyName" data-count="2">Способ оплаты</div>
           <div className="paymentWayOrder">
-            {/*<Dropdown*/}
-              {/*options={paymentVariants}*/}
-              {/*onChange={this.chPayment.bind(this)}*/}
-              {/*value={paymentVariants[0]}*/}
-            {/*/>*/}
+            <Dropdown
+              options={paymentVariants}
+              onChange={this.chPayment.bind(this)}
+              value={paymentVariants[0]}
+            />
           </div>
 
           <div className="tittleWAyName" data-count="3">Способ доставки</div>
