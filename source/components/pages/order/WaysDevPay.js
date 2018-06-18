@@ -118,7 +118,7 @@ class WaysDevPay extends React.Component {
   }
 
   dispatchData() {
-    if (this.props.cart.length) {
+    if (this.props.goods.length) {
       this.setState({
         isShowConfirm: true
       })

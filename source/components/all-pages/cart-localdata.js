@@ -129,3 +129,7 @@ function test() {
     }
   }
 }
+
+export const cleanAll = () => {
+  localdata.setLocalData('cart', JSON.stringify([]));
+}

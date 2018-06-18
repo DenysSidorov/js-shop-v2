@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import {getGoodsArray, getGoodsIds} from '../../all-pages/cart-localdata';
+import {getGoodsArray, getGoodsIds, cleanAll} from '../../all-pages/cart-localdata';
 
 // import MenuInfoSection from "../../modules/MenuInfoSection";
 import WaysDevPay from "./WaysDevPay";
@@ -93,6 +93,11 @@ class OrderPage extends React.Component {
     this.setState({cart: newCart});
   }
 
+  cleanAll = () => {
+    cleanAll();
+    this.setState({cart: []});
+  }
+
   render() {
     var styles = {
       // display: 'flex',
@@ -118,7 +123,10 @@ class OrderPage extends React.Component {
               incrementGoodByIdState={this.incrementGoodByIdState}
               decrementGoodByIdState={this.decrementGoodByIdState}
             />
-            <WaysDevPay goods={this.state.cart} />
+            <WaysDevPay
+              goods={this.state.cart}
+              cleanAll={this.cleanAll}
+            />
           </div>}
 
       </div>
