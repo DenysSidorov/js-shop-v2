@@ -118,7 +118,7 @@ class OrderPage extends React.Component {
           </div>
           : <div className="formOrderMain">
             <GoodsTable
-              cart={this.state.cart}
+              goods={this.state.cart}
               deleteGoodByIdState={this.deleteGoodByIdState}
               incrementGoodByIdState={this.incrementGoodByIdState}
               decrementGoodByIdState={this.decrementGoodByIdState}

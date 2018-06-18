@@ -5,7 +5,7 @@ import axios from "axios";
 // import {push} from "react-router-redux";
 import Dropdown from "react-dropdown";
 // import urlApi from '../../../../api/urlApi';
-// import Confirm from "../../WrapperApp/ConfirmBlock";
+import Confirm from "../../parts/confirm-block/ConfirmBlock";
 
 // import {
 //   pushToCart,
@@ -14,7 +14,7 @@ import Dropdown from "react-dropdown";
 //   decrementItem,
 //   deleteAll
 // } from "../../../../reducers/cart";
-// import GoodsTable from "./GoodsTable";
+import GoodsTable from "./GoodsTable";
 
 // http://fraserxu.me/react-dropdown/
 class WaysDevPay extends React.Component {
@@ -133,7 +133,7 @@ class WaysDevPay extends React.Component {
   }
 
   async sendDataToServer() {
-    let price = this.props.cart.reduce((prev, cur) => prev + Math.floor((((cur.price / 100) * (100 - cur.sail)) * cur.count)), 0);
+    let price = this.props.goods.reduce((prev, cur) => prev + Math.floor((((cur.price / 100) * (100 - cur.sail)) * cur.count)), 0);
     let order = {
       price,
       payment: this.state.payment,
@@ -145,7 +145,7 @@ class WaysDevPay extends React.Component {
       goods: []
 
     };
-    this.props.cart.forEach((item, ind) => {
+    this.props.goods.forEach((item, ind) => {
       var curGood = {};
       curGood._id = item._id;
       curGood.count = item.count;
@@ -157,6 +157,8 @@ class WaysDevPay extends React.Component {
       order.goods.push(curGood);
     });
 
+    window.location.href = window.location.origin + `/orders/${'12345e6'}`;
+
     try {
       //let response = await axios.post(`${urlApi}/api/orders`, order);
 
@@ -164,12 +166,14 @@ class WaysDevPay extends React.Component {
       if (response) {
         // TODO disable SPINNER
         // TODO delete order from main redux store
-        this.props.deleteAll();
+        this.props.cleanAll();
         // TODO redirect to thank you (IMPORTANT TO HAVE orderID !!! )
         //
         response = response.data;
         console.log(response, 'response1'); // _id
         // push('/about-us');
+
+        // todo change page with new id
         this.props.changePage(response._id);
       }
 
@@ -182,10 +186,10 @@ class WaysDevPay extends React.Component {
   }
 
   render() {
-    let goods = this.props.cart;
-    let {paymentVariants, delivery, name, address, email, phone} = this.state;
-    let payment = [{value: 'predo', label: 'Предоплата на карту'},
-      {value: 'naloj', label: 'Наложенный платеж'}]
+    let goods = this.props.goods;
+    let {paymentVariants, delivery, name, address, email, phone, payment} = this.state;
+    // let payment = [{value: 'predo', label: 'Предоплата на карту'},
+    //   {value: 'naloj', label: 'Наложенный платеж'}];
     return (
       <div className="userWaysContainer">
         <div className="userWays">
@@ -276,60 +280,38 @@ class WaysDevPay extends React.Component {
           }
 
         </div>
-        {/*{this.state.isShowConfirm && <Confirm*/}
-          {/*okHandler={this.sendDataToServer.bind(this)}*/}
-          {/*cancelHandler={this.handleConfirmUnmount.bind(this)}*/}
-          {/*unmountConfirm={this.handleConfirmUnmount.bind(this)}*/}
-        {/*>*/}
+        {this.state.isShowConfirm && <Confirm
+          okHandler={this.sendDataToServer.bind(this)}
+          cancelHandler={this.handleConfirmUnmount.bind(this)}
+          unmountConfirm={this.handleConfirmUnmount.bind(this)}
+        >
 
-          {/*<ul>*/}
-            {/*<li>*/}
-              {/*<div>Тип доставки:*/}
-                {/*{delivery == "newpost" && <span> Новая Почта</span>}*/}
-                {/*{delivery == "intime" && <span> Интайм</span>}*/}
-              {/*</div>*/}
-              {/*<div>Тип оплаты:*/}
-                {/*{payment.value == "predo" && <span> Предоплата на карту</span>}*/}
-                {/*{payment.value == "naloj" && <span> Наложенный платеж</span>}*/}
-              {/*</div>*/}
-              {/*<div>Имя: <span>{name}</span></div>*/}
-              {/*<div>Телефон: <span>{phone}</span></div>*/}
-              {/*<div>Адрес: <span>{address}</span></div>*/}
-              {/*{email && <div>Почта: <span>{email}</span></div>}*/}
-            {/*</li>*/}
-          {/*</ul>*/}
-          {/*<div className="maskForGoodsTableInOrder">*/}
-            {/*<div className="maskForGoodsTableInOrder-mask"></div>*/}
-            {/*<GoodsTable cart={goods}/>*/}
-          {/*</div>*/}
+          <ul>
+            <li>
+              <div>Тип доставки:
+                {delivery == "newpost" && <span> Новая Почта</span>}
+                {delivery == "intime" && <span> Интайм</span>}
+              </div>
+              <div>Тип оплаты:
+                {payment.value == "predo" && <span> Предоплата на карту</span>}
+                {payment.value == "naloj" && <span> Наложенный платеж</span>}
+              </div>
+              <div>Имя: <span>{name}</span></div>
+              <div>Телефон: <span>{phone}</span></div>
+              <div>Адрес: <span>{address}</span></div>
+              {email && <div>Почта: <span>{email}</span></div>}
+            </li>
+          </ul>
+          <div className="maskForGoodsTableInOrder">
+            <div className="maskForGoodsTableInOrder-mask"></div>
+            <GoodsTable goods={goods}/>
+          </div>
 
-        {/*</Confirm>}*/}
+        </Confirm>}
       </div>
     )
 
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    cart: state.cart.items
-  }
-}
-const pushTo = (orderNumber) => push({
-  pathname: '/great',
-  state: orderNumber,
-  search: '?the=search'
-});
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return bindActionCreators({
-    deleteItem: (item) => deleteFromCart(item),
-    addItem: (item) => pushToCart(item),
-    incrementItem,
-    changePage: pushTo,
-    decrementItem,
-    deleteAll,
-  }, dispatch)
-}
-
-// export default connect(mapStateToProps, mapDispatchToProps)(WaysDevPay);
 export default WaysDevPay;

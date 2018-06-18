@@ -30,7 +30,7 @@ class GoodsTable extends React.Component {
   }
 
   render() {
-    let goods = this.props.cart;
+    let goods = this.props.goods;
 
     return (
       <div className="itemsInCart">

@@ -98,6 +98,10 @@ app.get('/contacts', function (req, res) {
   res.render('landings/contacts/contacts', wrapper);
 });
 
+app.get('/orders/:id', async function (req, resp) {
+  resp.json({id: req.params.id})
+});
+
 app.get('/products/:id', async function (req, resp) {
 
   const id = req.params.id;
