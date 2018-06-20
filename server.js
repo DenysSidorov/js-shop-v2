@@ -64,8 +64,8 @@ app.get(['/index', '/', ''], async (req, resp, next) => {
 
 app.get('/order', function (req, res) {
   const data = {title: 'order', js: 'order', css: 'order'};
-  const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
-  res.render('order/order', wrapper);
+  // const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
+  res.render('order/order', data);
 });
 
 app.get('/payment-and-delivery', function (req, res) {
@@ -98,8 +98,11 @@ app.get('/contacts', function (req, res) {
   res.render('landings/contacts/contacts', wrapper);
 });
 
+
 app.get('/orders/:id', async function (req, resp) {
-  resp.json({id: req.params.id})
+  const data = {title: 'Заказы', js: 'orders', css: 'orders', id: req.params.id};
+  resp.render('landings/orders/orders', data);
+  // resp.json({id: req.params.id})
 });
 
 app.get('/products/:id', async function (req, resp) {
@@ -109,7 +112,6 @@ app.get('/products/:id', async function (req, resp) {
   try {
     let result = await axios.get(`http://localhost:5006/api/goods/${id}`);
     const data = {title: 'card', js: 'card', css: 'card', card: result.data[0]};
-    console.log('///////////',data.card);
     resp.render('card/card', data);
   } catch (er) {
     console.log(er.response | er);

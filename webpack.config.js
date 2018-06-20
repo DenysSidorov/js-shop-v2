@@ -32,6 +32,7 @@ const common = merge([
       'card': './pages/card/card.js',
       'cashback-and-exchange': './pages/landings/cashback-and-exchange/cashback-and-exchange.js',
       'payment-and-delivery': './pages/landings/payment-and-delivery/payment-and-delivery.js',
+      'orders': './pages/landings/orders/orders.js',
       'about-us': './pages/landings/about-us/about-us.js',
       'contacts': './pages/landings/contacts/contacts.js'
     },
