@@ -11,6 +11,7 @@ import config from './config';
 import errorMiddleWare from "./app-server/middlewares/errors";
 
 import goodRoute from "./app-server/routes/goodRoute";
+import orderRoute from "./app-server/routes/orderRoute";
 
 
 import * as GoodController from './app-server/controllers/good';
@@ -38,6 +39,7 @@ var cors = require('cors');
 console.log('DEV MODE = ', process.env.NODE_ENV);
 
 app.use('/api/goods', /*cors(),*/ goodRoute);
+app.use('/api/orders', /*cors(),*/ orderRoute);
 
 
 app.get('/t', async (req, res) => {
@@ -97,7 +99,6 @@ app.get('/contacts', function (req, res) {
   const wrapper = {htmlWebpackPlugin: {options: {data: data}}};
   res.render('landings/contacts/contacts', wrapper);
 });
-
 
 app.get('/orders/:id', async function (req, resp) {
   const data = {title: 'Заказы', js: 'orders', css: 'orders', id: req.params.id};

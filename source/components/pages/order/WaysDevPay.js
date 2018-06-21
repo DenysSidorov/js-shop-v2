@@ -26,6 +26,7 @@ class WaysDevPay extends React.Component {
     address: '',
     email: '',
     isNormal: false,
+    isLoadOrderFinish: false,
     isShowConfirm: false,
     orderInputErrors: [],
     paymentVariants: [
@@ -156,32 +157,27 @@ class WaysDevPay extends React.Component {
 
       order.goods.push(curGood);
     });
+    if (!this.state.isFetching) {
+      this.setState({
+        isFetching: true
+      });
+      try {
+        const url = 'http://localhost:5006';
+        let response = await axios.post(`${url}/api/orders`, order);
+        if (response) {
+          this.props.cleanAll();
+          window.location.href = window.location.origin + `/orders/${response.data._id}`;
+          // response = response.data;
+          // console.log(response, 'response1'); // _id
+          // this.props.changePage(response._id);
+        }
 
-    // window.location.href = window.location.origin + `/orders/${'12345e6'}`;
-
-    try {
-      //let response = await axios.post(`${urlApi}/api/orders`, order);
-
-      let response = false;
-      if (response) {
-        // TODO disable SPINNER
-        // TODO delete order from main redux store
-        this.props.cleanAll();
-        // TODO redirect to thank you (IMPORTANT TO HAVE orderID !!! )
-        //
-        response = response.data;
-        console.log(response, 'response1'); // _id
-        // push('/about-us');
-
-        // todo change page with new id
-        this.props.changePage(response._id);
+        // setTimeout(()=>{this.setState({cards: cards.goods})}, 2000)
+      } catch (e) {
+        console.log(e.response || e);
+      } finally {
+        // console.log('finally');
       }
-
-      // setTimeout(()=>{this.setState({cards: cards.goods})}, 2000)
-    } catch (e) {
-      console.log(e);
-    } finally {
-      console.log('finally');
     }
   }
 
@@ -201,7 +197,8 @@ class WaysDevPay extends React.Component {
                      className="accordion_toggle"
                      name="accordion-01"
                      id="toggle-01"
-                     onChange={()=>{}}
+                     onChange={() => {
+                     }}
                      checked={delivery == 'newpost' ? 'checked' : null}
               />
               <label onClick={this.chDelivery.bind(this, 'newpost')} className="accordion_trigger"
@@ -221,7 +218,9 @@ class WaysDevPay extends React.Component {
                      className="accordion_toggle"
                      name="accordion-01"
                      id="toggle-02"
-                     onChange={()=>{console.log('kh')}}
+                     onChange={() => {
+                       console.log('kh')
+                     }}
                      checked={delivery == 'intime' ? 'checked' : null}/>
               <label onClick={this.chDelivery.bind(this, 'intime')} className="accordion_trigger"
                      htmlFor="toggle-02">Доставка по Украине
@@ -306,6 +305,9 @@ class WaysDevPay extends React.Component {
             <div className="maskForGoodsTableInOrder-mask"></div>
             <GoodsTable goods={goods}/>
           </div>
+
+          {this.state.isLoadOrderFinish &&
+          <h1 className="orderWaysLoadingOrder">Обработка заказа...</h1>}
 
         </Confirm>}
       </div>

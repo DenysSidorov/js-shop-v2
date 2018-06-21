@@ -1,0 +1,26 @@
+$robotoLight: 'Roboto-Light';
+$robotoMedium: 'Roboto-Medium';
+$robotoRegular: 'Roboto-Regular';
+
+.greatPage-container {
+  padding: 10px;
+  p {
+    font: 1.3rem/2rem $robotoRegular;
+    margin-bottom: 10px;
+    text-indent: 20px;
+  }
+  .greatPage-container_number {
+    span {
+      color: #00c300;
+    }
+  }
+  .greatPage-container_homeLink{
+    a{
+      color:blue;
+    }
+  }
+}
+
+.orderWaysLoadingOrder{
+  margin-top: 20px;
+}

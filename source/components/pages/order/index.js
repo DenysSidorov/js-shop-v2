@@ -28,16 +28,19 @@ class OrderPage extends React.Component {
   async componentWillMount() {
     console.log('ers');
     try {
+      this.setState({isLoading: true})
       let localCart = getGoodsArray();
       console.log('LocalCart', localCart.length)
-      if(!localCart.length) {
+      if (!localCart.length) {
+        this.setState({isLoading: false})
         return false
-      };
+      }
+      ;
       let result = await axios({
         method: 'get',
         url: `http://localhost:5006/api/goods/goods-array?ids=${getGoodsIds()}`
       });
-
+      this.setState({isLoading: false})
       // взять и скрестить дынные с корзины и Localdata
       let newCart = result.data.map((el) => {
         let count = 0;
@@ -54,6 +57,7 @@ class OrderPage extends React.Component {
       });
       console.log('///////////', result);
     } catch (er) {
+      this.setState({isLoading: false})
       console.log(er.response || er);
     }
   }
@@ -63,13 +67,13 @@ class OrderPage extends React.Component {
   }
 
   deleteGoodByIdState = (id) => {
-    let newCart  = this.state.cart.filter(el => el._id != id);
+    let newCart = this.state.cart.filter(el => el._id != id);
     this.setState({cart: newCart});
   }
 
-  decrementGoodByIdState= (id)=> {
-    let newCart  = this.state.cart.map((el) => {
-      if(el._id == id){
+  decrementGoodByIdState = (id) => {
+    let newCart = this.state.cart.map((el) => {
+      if (el._id == id) {
         if (el.count > 1) {
           return {...el, count: el.count - 1}
         } else {
@@ -82,10 +86,10 @@ class OrderPage extends React.Component {
     this.setState({cart: newCart});
   }
 
-  incrementGoodByIdState= (id)=> {
-    let newCart  = this.state.cart.map((el) => {
-      if(el._id == id){
-        return {...el, count: el.count + 1 }
+  incrementGoodByIdState = (id) => {
+    let newCart = this.state.cart.map((el) => {
+      if (el._id == id) {
+        return {...el, count: el.count + 1}
       } else {
         return el
       }
@@ -112,22 +116,25 @@ class OrderPage extends React.Component {
 
       <div style={styles}>
         {/*<MenuInfoSection/>*/}
-        {!goods.length
-          ? <div style={{padding: '30px'}}>
-            <span style={{fontSize: '2rem'}}>Корзина пуста!</span>
-          </div>
-          : <div className="formOrderMain">
-            <GoodsTable
-              goods={this.state.cart}
-              deleteGoodByIdState={this.deleteGoodByIdState}
-              incrementGoodByIdState={this.incrementGoodByIdState}
-              decrementGoodByIdState={this.decrementGoodByIdState}
-            />
-            <WaysDevPay
-              goods={this.state.cart}
-              cleanAll={this.cleanAll}
-            />
-          </div>}
+        {this.state.isLoading ? <h1>Загрузка...</h1> :
+
+          !goods.length
+            ? <div style={{padding: '30px'}}>
+              <span style={{fontSize: '2rem'}}>Корзина пуста!</span>
+            </div>
+            : <div className="formOrderMain">
+              <GoodsTable
+                goods={this.state.cart}
+                deleteGoodByIdState={this.deleteGoodByIdState}
+                incrementGoodByIdState={this.incrementGoodByIdState}
+                decrementGoodByIdState={this.decrementGoodByIdState}
+              />
+              <WaysDevPay
+                goods={this.state.cart}
+                cleanAll={this.cleanAll}
+              />
+            </div>
+        }
 
       </div>
 
