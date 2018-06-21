@@ -157,7 +157,7 @@ class WaysDevPay extends React.Component {
       order.goods.push(curGood);
     });
 
-    window.location.href = window.location.origin + `/orders/${'12345e6'}`;
+    // window.location.href = window.location.origin + `/orders/${'12345e6'}`;
 
     try {
       //let response = await axios.post(`${urlApi}/api/orders`, order);
