@@ -126,7 +126,9 @@
                                         <% } else { %>
                                         <div class="oneCardItem__bottomCard__status red">Нет в наличии</div>
                                         <% } %>
-                                        <div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>
+                                        <div class="oneCardItem__bottomCard__buy">
+                                            <span id="js_index_cart" data-good-id="<%= card._id%>"}>В КОРЗИНУ</span>
+                                        </div>
                                     </div>
                                     <% if (card.sail) { %>
                                         <div class="oneCardItem__bottomCard_sale">

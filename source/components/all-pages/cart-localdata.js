@@ -111,26 +111,15 @@ const _changeHTMLIco = (value) => {
     orderIco.setAttribute('data-js_count', Number(currentOrders, 10) - 1);
   } else if (value === '0'){
     orderIco.setAttribute('data-js_count', 0);
+  } else if (value === '?'){
+    let cart = localdata.getLocalData('cart');
+    cart = JSON.parse(cart);
+    const count = cart.reduce((prev, cur) => {
+      return prev + cur.count
+    }, 0)
+    rderIco.setAttribute('data-js_count', count);
   }
 }
-
-export const addGoodById = (id) => {
-  if (!localdata.isEmptyStorage('cart')) {
-    try {
-      let cart = localdata.getLocalData('cart');
-      cart = JSON.parse(cart);
-
-      const count = cart.reduce((prev, cur) => {
-        return prev + cur.count
-      }, 0)
-
-      let orderIco = document.getElementById('main-cart__ico');
-      orderIco.setAttribute('data-js_count', count);
-    } catch (er) {
-      console.error(er);
-    }
-  }
-};
 
 export const cleanAll = () => {
   localdata.setLocalData('cart', JSON.stringify([]));
