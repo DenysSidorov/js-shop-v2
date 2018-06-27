@@ -35,6 +35,7 @@ export const deleteGoodsById = (id) => {
       cart = JSON.parse(cart);
       let newCart = cart.filter((el) => el.id !== id);
       localdata.setLocalData('cart', JSON.stringify(newCart));
+      _changeHTMLIco('?');
     }
     catch (er) {
       console.error(er);
@@ -102,7 +103,7 @@ export const decrementGoodsById = (id) => {
 const _changeHTMLIco = (value) => {
   let orderIco = document.getElementById('main-cart__ico');
   let currentOrders = orderIco.getAttribute('data-js_count');
-  if (['+', '-', '0'].indexOf(value) === -1) {
+  if (['+', '-', '0', '?'].indexOf(value) === -1) {
     return;
   }
   if (value === '+') {
