@@ -117,7 +117,7 @@ const _changeHTMLIco = (value) => {
     const count = cart.reduce((prev, cur) => {
       return prev + cur.count
     }, 0)
-    rderIco.setAttribute('data-js_count', count);
+    orderIco.setAttribute('data-js_count', count);
   }
 }
 
