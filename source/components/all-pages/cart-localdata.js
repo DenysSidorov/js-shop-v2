@@ -42,13 +42,11 @@ export const deleteGoodsById = (id) => {
     }
   } else return [];
 }
-
 export const incrementGoodsById = (id) => {
   if (!localdata.isEmptyStorage('cart')) {
     try {
       let cart = localdata.getLocalData('cart');
       cart = JSON.parse(cart);
-
 
 
       let newCart = cart.map((el) => {
@@ -61,6 +59,7 @@ export const incrementGoodsById = (id) => {
 
 
       localdata.setLocalData('cart', JSON.stringify(newCart));
+      _changeHTMLIco('+');
     }
     catch (er) {
       console.error(er);
@@ -85,6 +84,7 @@ export const decrementGoodsById = (id) => {
         }
       });
       localdata.setLocalData('cart', JSON.stringify(newCart));
+      _changeHTMLIco('-');
     }
     catch (er) {
       console.error(er);
@@ -92,6 +92,20 @@ export const decrementGoodsById = (id) => {
     }
   } else return [];
 }
+
+const _changeHTMLIco = (value) => {
+  let orderIco = document.getElementById('main-cart__ico');
+  let currentOrders = orderIco.getAttribute('data-js_count');
+  if (['+', '-'].indexOf(value) === -1) {
+    return;
+  }
+  if (value === '+') {
+    orderIco.setAttribute('data-js_count', Number(currentOrders, 10) + 1);
+  } else if (value === '-') {
+    orderIco.setAttribute('data-js_count', Number(currentOrders, 10) - 1);
+  }
+}
+
 
 export const addGoodById = (id) => {
   if (!localdata.isEmptyStorage('cart')) {

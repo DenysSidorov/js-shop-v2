@@ -1,5 +1,7 @@
 import localdata from '../libs/localdata';
 
+
+// initial state for cart's ico (all goods)
 if(localdata.isEmptyStorage('cart')){
 
 } else {
