@@ -49,13 +49,19 @@ export const incrementGoodsById = (id) => {
       cart = JSON.parse(cart);
 
 
+      let flagExisting = false;
       let newCart = cart.map((el) => {
         if (el.id == id) {
+          flagExisting = true;
           return {...el, count: el.count + 1}
         } else {
           return el
         }
       });
+
+      if(!flagExisting){
+        newCart.push({id, count: 1});
+      }
 
 
       localdata.setLocalData('cart', JSON.stringify(newCart));
@@ -96,16 +102,17 @@ export const decrementGoodsById = (id) => {
 const _changeHTMLIco = (value) => {
   let orderIco = document.getElementById('main-cart__ico');
   let currentOrders = orderIco.getAttribute('data-js_count');
-  if (['+', '-'].indexOf(value) === -1) {
+  if (['+', '-', '0'].indexOf(value) === -1) {
     return;
   }
   if (value === '+') {
     orderIco.setAttribute('data-js_count', Number(currentOrders, 10) + 1);
   } else if (value === '-') {
     orderIco.setAttribute('data-js_count', Number(currentOrders, 10) - 1);
+  } else if (value === '0'){
+    orderIco.setAttribute('data-js_count', 0);
   }
 }
-
 
 export const addGoodById = (id) => {
   if (!localdata.isEmptyStorage('cart')) {
@@ -125,25 +132,7 @@ export const addGoodById = (id) => {
   }
 };
 
-function test() {
-  if (localdata.isEmptyStorage('cart')) {
-
-  } else {
-    try {
-      let cart = localdata.getLocalData('cart');
-      cart = JSON.parse(cart);
-      const count = cart.reduce((prev, cur) => {
-        return prev + cur.count
-      }, 0)
-
-      let orderIco = document.getElementById('main-cart__ico');
-      orderIco.setAttribute('data-js_count', count);
-    } catch (er) {
-      console.error(er);
-    }
-  }
-}
-
 export const cleanAll = () => {
   localdata.setLocalData('cart', JSON.stringify([]));
+  _changeHTMLIco('0');
 }
