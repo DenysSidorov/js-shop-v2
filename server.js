@@ -53,10 +53,21 @@ app.get('/t', async (req, res) => {
 // });
 
 app.get(['/index', '/', ''], async (req, resp, next) => {
-  var uniqCategory = [];
+  console.log('--- ', req.query); // {sort : 'myzhskoy'}
+  let param = req.query.sort;
+  console.log('+++ ', param);
+  let result;
   try {
-    uniqCategory = await axios.get(`http://localhost:5006/api/goods/tags`);
-    const result = await axios({method: 'get', url: 'http://localhost:5006/api/goods/'});
+    const uniqCategory = await axios.get(`http://localhost:5006/api/goods/tags`);
+
+    if (param) {
+      // ?sort=${param}
+      console.log(1111111);
+      result = await axios({method: 'get', url: `http://localhost:5006/api/goods/?sort=${encodeURIComponent(param)}`});
+    } else {
+      console.log(222222);
+      result = await axios({method: 'get', url: `http://localhost:5006/api/goods/`});
+    }
     const data = {
       title: 'index',
       js: 'index',

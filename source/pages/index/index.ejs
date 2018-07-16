@@ -46,9 +46,9 @@
         <!--CONFIRM BLOCK НЕЗАВИСИМЫЙ BOTTOM-->
 
 
-      <!--top-menu start-->
-        <%- include ../../parts/topMenu.ejs%>
-      <!--top-menu end-->
+        <!--top-menu start-->
+        <%- include ../../parts/topMenu.ejs %>
+        <!--top-menu end-->
 
         <div class="mainContainerSection fullWidth left">
             <div class="container">
@@ -59,15 +59,19 @@
                 <%- include ../../parts/menuInfoSection.ejs %>
                 <div></div>
                 <div class="itemsSection left fullWidth ">
-                    <div><%= goods.count%></div>
+                    <!--<div><%= goods.count %></div>-->
                     <div class="container">
                         <div class="themeItemsblock">
+                            <a href="/?sort=main" class="themeItemsblock__oneItem">
+                               <span class="themeItemsblock__oneItem_name">Все</span>
+                                <!--<span class="themeItemsblock__oneItem_count">54</span>-->
+                            </a>
                             <% categories.forEach(function(category) { %>
-                            <span class="themeItemsblock__oneItem">
-                               <span class="themeItemsblock__oneItem_name"><%= category.name %></span>
+                            <a href="/?sort=<%= category.name %>" class="themeItemsblock__oneItem">
+                                <span class="themeItemsblock__oneItem_name"><%= category.name %></span>
                                 <span class="themeItemsblock__oneItem_count"><%= category.count %></span>
-                            </span>
-                            <%})%>
+                            </a>
+                            <% }) %>
                         </div>
                     </div>
                 </div>
@@ -90,8 +94,8 @@
                                         </div>
                                         <div class="oneCardItem__headCard__wrap-things">
                                             <!--<div class="oneCardItem__headCard__otherThings">-->
-                                                <!--<i class="fa fa-heart"></i>-->
-                                                <!--<span class="oneCardItem__headCard__otherThings_like"> <%= card.likes %></span>-->
+                                            <!--<i class="fa fa-heart"></i>-->
+                                            <!--<span class="oneCardItem__headCard__otherThings_like"> <%= card.likes %></span>-->
                                             <!--</div>-->
                                             <div class="oneCardItem__headCard__view">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
@@ -100,7 +104,8 @@
                                         </div>
                                     </div>
 
-                                    <a href="/products/<%= card._id%>" class="oneCardItem__imageBody">
+                                    <a href="/products/<%= card._id %>"
+                                       class="oneCardItem__imageBody">
                                         <img src="/img-static/<%= card.photo[0] %>" alt="">
                                     </a>
 
@@ -112,29 +117,29 @@
                                         </div>
 
                                         <% if(card.isExists) { %>
-                                            <div class="oneCardItem__bottomCard__status">В наличии</div>
+                                        <div class="oneCardItem__bottomCard__status">В наличии</div>
                                         <% } else { %>
-                                        <div class="oneCardItem__bottomCard__status red">Нет в наличии</div>
+                                        <div class="oneCardItem__bottomCard__status red">Нет в
+                                            наличии
+                                        </div>
                                         <% } %>
                                         <div class="oneCardItem__bottomCard__buy">
-                                            <span id="js_index_cart" data-good-id="<%= card._id%>"}>В КОРЗИНУ</span>
+                                            <span id="js_index_cart" data-good-id="<%= card._id %>"
+                                                  }>В КОРЗИНУ</span>
                                         </div>
                                     </div>
                                     <% if (card.sail) { %>
-                                        <div class="oneCardItem__bottomCard_sale">
-                                            <span>-<%= card.sail %>%</span>
-                                        </div>
-                                    <% }%>
+                                    <div class="oneCardItem__bottomCard_sale">
+                                        <span>-<%= card.sail %>%</span>
+                                    </div>
+                                    <% } %>
 
                                     <% if (card.isNewGood) { %>
                                     <div class="oneCardItem__bottomCard_new">NEW<span></span></div>
-                                    <% }%>
+                                    <% } %>
 
                                 </div>
                                 <% }); %>
-
-
-
 
                             </div>
                         </div>
@@ -149,308 +154,308 @@
                 </div>
 
                 <!--<div class="similarGoodsContainer">-->
-                    <!--<h2 class="similarGoodsTitle">Похожие товары</h2>-->
-                    <!--<div class="slickContainerSimilarGoods">-->
-                        <!--<div class="bodyCardItems__oneCardItem">-->
+                <!--<h2 class="similarGoodsTitle">Похожие товары</h2>-->
+                <!--<div class="slickContainerSimilarGoods">-->
+                <!--<div class="bodyCardItems__oneCardItem">-->
 
-                            <!--<div class="oneCardItem__headCard">-->
-                                <!--<div class="oneCardItem__headCard__priceCard">-->
-                                    <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
-                                    <!--123 123-->
-                                    <!--12321-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__wrap-things">-->
-                                    <!--<div class="oneCardItem__headCard__otherThings">-->
-                                        <!--<i class="fa fa-heart"></i>-->
-                                        <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="oneCardItem__headCard__view">-->
-                                        <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
-                                        <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__headCard">-->
+                <!--<div class="oneCardItem__headCard__priceCard">-->
+                <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
+                <!--123 123-->
+                <!--12321-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__wrap-things">-->
+                <!--<div class="oneCardItem__headCard__otherThings">-->
+                <!--<i class="fa fa-heart"></i>-->
+                <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__view">-->
+                <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
+                <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__imageBody">-->
-                                <!--<img src="img-static/1.png" alt="">-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__imageBody">-->
+                <!--<img src="img-static/1.png" alt="">-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard">-->
-                                <!--<div class="oneCardItem__bottomCard__shortText">-->
-                                    <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
-                                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard">-->
+                <!--<div class="oneCardItem__bottomCard__shortText">-->
+                <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
+                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
-                            <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
-                        <!--</div>-->
-                        <!--<div class="bodyCardItems__oneCardItem">-->
+                <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
+                <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
+                <!--</div>-->
+                <!--<div class="bodyCardItems__oneCardItem">-->
 
-                            <!--<div class="oneCardItem__headCard">-->
-                                <!--<div class="oneCardItem__headCard__priceCard">-->
-                                    <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
-                                    <!--123 123-->
-                                    <!--12321-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__wrap-things">-->
-                                    <!--<div class="oneCardItem__headCard__otherThings">-->
-                                        <!--<i class="fa fa-heart"></i>-->
-                                        <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="oneCardItem__headCard__view">-->
-                                        <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
-                                        <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__headCard">-->
+                <!--<div class="oneCardItem__headCard__priceCard">-->
+                <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
+                <!--123 123-->
+                <!--12321-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__wrap-things">-->
+                <!--<div class="oneCardItem__headCard__otherThings">-->
+                <!--<i class="fa fa-heart"></i>-->
+                <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__view">-->
+                <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
+                <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__imageBody">-->
-                                <!--<img src="img-static/1.png" alt="">-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__imageBody">-->
+                <!--<img src="img-static/1.png" alt="">-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard">-->
-                                <!--<div class="oneCardItem__bottomCard__shortText">-->
-                                    <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
-                                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard">-->
+                <!--<div class="oneCardItem__bottomCard__shortText">-->
+                <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
+                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
-                            <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
-                        <!--</div>-->
-                        <!--<div class="bodyCardItems__oneCardItem">-->
+                <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
+                <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
+                <!--</div>-->
+                <!--<div class="bodyCardItems__oneCardItem">-->
 
-                            <!--<div class="oneCardItem__headCard">-->
-                                <!--<div class="oneCardItem__headCard__priceCard">-->
-                                    <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
-                                    <!--123 123-->
-                                    <!--12321-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__wrap-things">-->
-                                    <!--<div class="oneCardItem__headCard__otherThings">-->
-                                        <!--<i class="fa fa-heart"></i>-->
-                                        <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="oneCardItem__headCard__view">-->
-                                        <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
-                                        <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__headCard">-->
+                <!--<div class="oneCardItem__headCard__priceCard">-->
+                <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
+                <!--123 123-->
+                <!--12321-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__wrap-things">-->
+                <!--<div class="oneCardItem__headCard__otherThings">-->
+                <!--<i class="fa fa-heart"></i>-->
+                <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__view">-->
+                <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
+                <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__imageBody">-->
-                                <!--<img src="img-static/1.png" alt="">-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__imageBody">-->
+                <!--<img src="img-static/1.png" alt="">-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard">-->
-                                <!--<div class="oneCardItem__bottomCard__shortText">-->
-                                    <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
-                                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard">-->
+                <!--<div class="oneCardItem__bottomCard__shortText">-->
+                <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
+                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
-                            <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
-                        <!--</div>-->
-                        <!--<div class="bodyCardItems__oneCardItem">-->
+                <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
+                <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
+                <!--</div>-->
+                <!--<div class="bodyCardItems__oneCardItem">-->
 
-                            <!--<div class="oneCardItem__headCard">-->
-                                <!--<div class="oneCardItem__headCard__priceCard">-->
-                                    <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
-                                    <!--123 123-->
-                                    <!--12321-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__wrap-things">-->
-                                    <!--<div class="oneCardItem__headCard__otherThings">-->
-                                        <!--<i class="fa fa-heart"></i>-->
-                                        <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="oneCardItem__headCard__view">-->
-                                        <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
-                                        <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__headCard">-->
+                <!--<div class="oneCardItem__headCard__priceCard">-->
+                <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
+                <!--123 123-->
+                <!--12321-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__wrap-things">-->
+                <!--<div class="oneCardItem__headCard__otherThings">-->
+                <!--<i class="fa fa-heart"></i>-->
+                <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__view">-->
+                <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
+                <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__imageBody">-->
-                                <!--<img src="img-static/1.png" alt="">-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__imageBody">-->
+                <!--<img src="img-static/1.png" alt="">-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard">-->
-                                <!--<div class="oneCardItem__bottomCard__shortText">-->
-                                    <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
-                                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard">-->
+                <!--<div class="oneCardItem__bottomCard__shortText">-->
+                <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
+                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
-                            <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
-                        <!--</div>-->
-                        <!--<div class="bodyCardItems__oneCardItem">-->
+                <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
+                <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
+                <!--</div>-->
+                <!--<div class="bodyCardItems__oneCardItem">-->
 
-                            <!--<div class="oneCardItem__headCard">-->
-                                <!--<div class="oneCardItem__headCard__priceCard">-->
-                                    <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
-                                    <!--123 123-->
-                                    <!--12321-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__wrap-things">-->
-                                    <!--<div class="oneCardItem__headCard__otherThings">-->
-                                        <!--<i class="fa fa-heart"></i>-->
-                                        <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="oneCardItem__headCard__view">-->
-                                        <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
-                                        <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__headCard">-->
+                <!--<div class="oneCardItem__headCard__priceCard">-->
+                <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
+                <!--123 123-->
+                <!--12321-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__wrap-things">-->
+                <!--<div class="oneCardItem__headCard__otherThings">-->
+                <!--<i class="fa fa-heart"></i>-->
+                <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__view">-->
+                <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
+                <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__imageBody">-->
-                                <!--<img src="img-static/1.png" alt="">-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__imageBody">-->
+                <!--<img src="img-static/1.png" alt="">-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard">-->
-                                <!--<div class="oneCardItem__bottomCard__shortText">-->
-                                    <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
-                                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard">-->
+                <!--<div class="oneCardItem__bottomCard__shortText">-->
+                <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
+                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
-                            <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
-                        <!--</div>-->
-                        <!--<div class="bodyCardItems__oneCardItem">-->
+                <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
+                <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
+                <!--</div>-->
+                <!--<div class="bodyCardItems__oneCardItem">-->
 
-                            <!--<div class="oneCardItem__headCard">-->
-                                <!--<div class="oneCardItem__headCard__priceCard">-->
-                                    <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
-                                    <!--123 123-->
-                                    <!--12321-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__wrap-things">-->
-                                    <!--<div class="oneCardItem__headCard__otherThings">-->
-                                        <!--<i class="fa fa-heart"></i>-->
-                                        <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="oneCardItem__headCard__view">-->
-                                        <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
-                                        <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__headCard">-->
+                <!--<div class="oneCardItem__headCard__priceCard">-->
+                <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
+                <!--123 123-->
+                <!--12321-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__wrap-things">-->
+                <!--<div class="oneCardItem__headCard__otherThings">-->
+                <!--<i class="fa fa-heart"></i>-->
+                <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__view">-->
+                <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
+                <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__imageBody">-->
-                                <!--<img src="img-static/1.png" alt="">-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__imageBody">-->
+                <!--<img src="img-static/1.png" alt="">-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard">-->
-                                <!--<div class="oneCardItem__bottomCard__shortText">-->
-                                    <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
-                                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard">-->
+                <!--<div class="oneCardItem__bottomCard__shortText">-->
+                <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
+                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
-                            <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
-                        <!--</div>-->
-                        <!--<div class="bodyCardItems__oneCardItem">-->
+                <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
+                <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
+                <!--</div>-->
+                <!--<div class="bodyCardItems__oneCardItem">-->
 
-                            <!--<div class="oneCardItem__headCard">-->
-                                <!--<div class="oneCardItem__headCard__priceCard">-->
-                                    <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
-                                    <!--123 123-->
-                                    <!--12321-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__wrap-things">-->
-                                    <!--<div class="oneCardItem__headCard__otherThings">-->
-                                        <!--<i class="fa fa-heart"></i>-->
-                                        <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="oneCardItem__headCard__view">-->
-                                        <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
-                                        <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__headCard">-->
+                <!--<div class="oneCardItem__headCard__priceCard">-->
+                <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
+                <!--123 123-->
+                <!--12321-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__wrap-things">-->
+                <!--<div class="oneCardItem__headCard__otherThings">-->
+                <!--<i class="fa fa-heart"></i>-->
+                <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__view">-->
+                <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
+                <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__imageBody">-->
-                                <!--<img src="img-static/1.png" alt="">-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__imageBody">-->
+                <!--<img src="img-static/1.png" alt="">-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard">-->
-                                <!--<div class="oneCardItem__bottomCard__shortText">-->
-                                    <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
-                                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard">-->
+                <!--<div class="oneCardItem__bottomCard__shortText">-->
+                <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
+                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
-                            <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
-                        <!--</div>-->
-                        <!--<div class="bodyCardItems__oneCardItem">-->
+                <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
+                <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
+                <!--</div>-->
+                <!--<div class="bodyCardItems__oneCardItem">-->
 
-                            <!--<div class="oneCardItem__headCard">-->
-                                <!--<div class="oneCardItem__headCard__priceCard">-->
-                                    <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
-                                    <!--123 123-->
-                                    <!--12321-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__headCard__wrap-things">-->
-                                    <!--<div class="oneCardItem__headCard__otherThings">-->
-                                        <!--<i class="fa fa-heart"></i>-->
-                                        <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="oneCardItem__headCard__view">-->
-                                        <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
-                                        <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__headCard">-->
+                <!--<div class="oneCardItem__headCard__priceCard">-->
+                <!--<span>879</span><span></span>&nbsp;<span>$</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__nameBrand">Reebok, model test-1000 21 12321 312 3123-->
+                <!--123 123-->
+                <!--12321-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__wrap-things">-->
+                <!--<div class="oneCardItem__headCard__otherThings">-->
+                <!--<i class="fa fa-heart"></i>-->
+                <!--<span class="oneCardItem__headCard__otherThings_like"> 123</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__headCard__view">-->
+                <!--<i class="fa fa-eye" aria-hidden="true"></i>-->
+                <!--<span class="oneCardItem__headCard__view_items"> 123</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__imageBody">-->
-                                <!--<img src="img-static/1.png" alt="">-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__imageBody">-->
+                <!--<img src="img-static/1.png" alt="">-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard">-->
-                                <!--<div class="oneCardItem__bottomCard__shortText">-->
-                                    <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
-                                <!--</div>-->
-                                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
-                                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
-                            <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard">-->
+                <!--<div class="oneCardItem__bottomCard__shortText">-->
+                <!--<span class="oneCardItem__bottomCard__shortText_dots">Короткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давайКороткое описание товара, очень крутое описание овара, купи меня, я очень вкусный товар, бесплатно почти, с большой скидкой, давай, давай</span>-->
+                <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard__status">В наличии</div>-->
+                <!--<div class="oneCardItem__bottomCard__buy"><span>В КОРЗИНУ</span></div>-->
+                <!--</div>-->
 
-                            <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
-                            <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
-                        <!--</div>-->
-                        <!--<div class="goToAllGoodsFromSimilar">-->
-                            <!--<a class="goToAllGoodsFromSimilar_text">Перейти ко всем похожим товарам</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                <!--<div class="oneCardItem__bottomCard_sale"><span>-15%</span></div>-->
+                <!--<div class="oneCardItem__bottomCard_new">NEW<span></span></div>-->
+                <!--</div>-->
+                <!--<div class="goToAllGoodsFromSimilar">-->
+                <!--<a class="goToAllGoodsFromSimilar_text">Перейти ко всем похожим товарам</a>-->
+                <!--</div>-->
+                <!--</div>-->
                 <!--</div>-->
 
                 <!--CONTENT FOOTER -->
@@ -465,7 +470,7 @@
 
     <!--Кнопка вверх-->
     <div class="upBtn">
-        <div id="scrollup"><i class="fa fa-arrow-circle-o-up" ></i></div>
+        <div id="scrollup"><i class="fa fa-arrow-circle-o-up"></i></div>
     </div>
     <!--Кнопка вверх-->
 
