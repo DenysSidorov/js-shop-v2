@@ -62,22 +62,12 @@
                     <div><%= goods.count%></div>
                     <div class="container">
                         <div class="themeItemsblock">
+                            <% categories.forEach(function(category) { %>
                             <span class="themeItemsblock__oneItem">
-                               <span class="themeItemsblock__oneItem_name">Новинки</span>
-                                <span class="themeItemsblock__oneItem_count">54</span>
+                               <span class="themeItemsblock__oneItem_name"><%= category.name %></span>
+                                <span class="themeItemsblock__oneItem_count"><%= category.count %></span>
                             </span>
-                            <span class="themeItemsblock__oneItem">
-                               <span class="themeItemsblock__oneItem_name">Женские</span>
-                                <span class="themeItemsblock__oneItem_count">433</span>
-                            </span>
-                            <span class="themeItemsblock__oneItem">
-                               <span class="themeItemsblock__oneItem_name">Мужские</span>
-                                <span class="themeItemsblock__oneItem_count">6</span>
-                            </span>
-                            <span class="themeItemsblock__oneItem">
-                               <span class="themeItemsblock__oneItem_name">Детские</span>
-                                <span class="themeItemsblock__oneItem_count">35435</span>
-                            </span>
+                            <%})%>
                         </div>
                     </div>
                 </div>
